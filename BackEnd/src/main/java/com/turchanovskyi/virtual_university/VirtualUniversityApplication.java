@@ -1,0 +1,12 @@
+package com.turchanovskyi.virtual_university;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class VirtualUniversityApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(VirtualUniversityApplication.class, args);
+	}
+}
