@@ -1,7 +1,14 @@
 package com.turchanovskyi.virtual_university.model;
 
-public enum Role {
+import org.springframework.security.core.GrantedAuthority;
+
+public enum Role implements GrantedAuthority {
 	ADMIN,
 	STUDENT,
-	PROFESSOR
+	PROFESSOR;
+
+	@Override
+	public String getAuthority() {
+		return name();
+	}
 }

@@ -10,7 +10,7 @@ import java.util.List;
 public class Course implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "course_id")
 	private Long course_id;
 
@@ -40,6 +40,17 @@ public class Course implements Serializable {
 				joinColumns = @JoinColumn(name = "course_id"),
 				inverseJoinColumns = @JoinColumn(name = "user_id"))
 	private List<User> userList = new ArrayList();
+
+	public Course() {
+	}
+
+	public Course(String title, String password, String professor, String description, List<Material> materialList, String creator) {
+		this.title = title;
+		this.password = password;
+		this.professor = professor;
+		this.description = description;
+		this.creator = creator;
+	}
 
 	public Long getCourse_id() {
 		return course_id;

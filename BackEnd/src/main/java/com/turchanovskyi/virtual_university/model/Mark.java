@@ -21,6 +21,16 @@ public class Mark {
 	@JoinColumn(name = "course_id")
 	private Course course;
 
+	public Mark() {
+	}
+
+	public Mark(String title_id, int mark, User user, Course course) {
+		this.title_id = title_id;
+		this.mark = mark;
+		this.user = user;
+		this.course = course;
+	}
+
 	public String getTitle_id() {
 		return title_id;
 	}

@@ -1,6 +1,6 @@
 package com.turchanovskyi.virtual_university.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.turchanovskyi.virtual_university.interfaces.UserService;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -8,37 +8,36 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 
-import javax.sql.DataSource;
-
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-	@Autowired
-	private DataSource dataSource;
+	private final UserService userService;
+
+	public WebSecurityConfig(UserService userService) {
+		this.userService = userService;
+	}
+
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception
 	{
 		http
 				.authorizeRequests()
-					.antMatchers("/").permitAll()
-					.anyRequest().authenticated()
+					.antMatchers("/").permitAll();
+					/*.anyRequest().authenticated()
 					.and()
 				.formLogin()
 					.permitAll()
 					.and()
 				.logout()
-					.permitAll();
+					.permitAll();*/
 	}
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception
 	{
-		auth.jdbcAuthentication()
-				.dataSource(dataSource)
-				.passwordEncoder(NoOpPasswordEncoder.getInstance())
-				.usersByUsernameQuery("select email, password, 1 from users where email=?")
-				.authoritiesByUsernameQuery("select u.email, r.role_id from users u inner join roles r on u.role_id = r.role_id where u.email=?");
+		auth.userDetailsService(userService)
+				.passwordEncoder(NoOpPasswordEncoder.getInstance());
 	}
 }

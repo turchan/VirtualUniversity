@@ -21,6 +21,15 @@ public class Material {
 	@JoinColumn(name = "course_id")
 	private Course course;
 
+	public Material() {
+	}
+
+	public Material(String title, String description, Course course) {
+		this.title = title;
+		this.description = description;
+		this.course = course;
+	}
+
 	public Long getMaterial_id() {
 		return material_id;
 	}

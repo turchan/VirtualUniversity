@@ -1,15 +1,20 @@
 package com.turchanovskyi.virtual_university.model;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class User implements UserDetails {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "user_id")
 	private Long user_id;
 
@@ -45,6 +50,20 @@ public class User {
 				inverseJoinColumns = @JoinColumn(name = "course_id"))
 	private List<Course> coursesList = new ArrayList();
 
+	public User() {
+	}
+
+	public User(String login, String password, String name, String surname, String country, String email, String city, Role role_id) {
+		this.login = login;
+		this.password = password;
+		this.name = name;
+		this.surname = surname;
+		this.country = country;
+		this.email = email;
+		this.city = city;
+		this.role_id = role_id;
+	}
+
 	public Long getUser_id() {
 		return user_id;
 	}
@@ -61,8 +80,38 @@ public class User {
 		this.login = login;
 	}
 
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return Collections.singleton(getRole_id());
+	}
+
 	public String getPassword() {
 		return password;
+	}
+
+	@Override
+	public String getUsername() {
+		return email;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return true;
 	}
 
 	public void setPassword(String password) {
