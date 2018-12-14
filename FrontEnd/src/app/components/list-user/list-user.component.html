@@ -1,4 +1,4 @@
-<div>
+<div class="container">
   <h1>asdfasdfasf</h1>
   <table>
     <tbody>
@@ -9,7 +9,9 @@
         <td>{{user.name}}</td>
         <td>{{user.surname}}</td>
         <td>{{user.city}}</td>
+        <td>{{user.role_id}}</td>
       </tr>
     </tbody>
+    <button (click)="addUser()">Create user</button>
   </table>
 </div>

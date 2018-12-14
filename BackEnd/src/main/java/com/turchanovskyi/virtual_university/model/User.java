@@ -1,5 +1,7 @@
 package com.turchanovskyi.virtual_university.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -44,11 +46,12 @@ public class User implements UserDetails {
 	@Column(name = "role_id")
 	private Role role_id;
 
+	@JsonIgnore
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "users_courses",
 				joinColumns = @JoinColumn(name = "user_id"),
 				inverseJoinColumns = @JoinColumn(name = "course_id"))
-	private List<Course> coursesList = new ArrayList();
+	private List<Course> coursesList = new ArrayList<>();
 
 	public User() {
 	}

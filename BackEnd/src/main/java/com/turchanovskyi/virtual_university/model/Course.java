@@ -1,5 +1,8 @@
 package com.turchanovskyi.virtual_university.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -7,7 +10,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "courses")
-public class Course implements Serializable {
+public class Course {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,20 +29,18 @@ public class Course implements Serializable {
 	@Column(name = "description")
 	private String description;
 
-	@OneToMany(mappedBy = "course", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	private List<Material> materialList = new ArrayList();
+	@OneToMany(mappedBy = "course", fetch = FetchType.LAZY)
+	private List<Material> materialList = new ArrayList<>();
 
 	@Column(name = "creator")
 	private String creator;
 
-	@OneToMany(mappedBy = "course", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<Mark> markList = new ArrayList();
+	@OneToMany(mappedBy = "course", fetch = FetchType.LAZY)
+	private List<Mark> markList = new ArrayList<>();
 
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinTable(name = "users_courses",
-				joinColumns = @JoinColumn(name = "course_id"),
-				inverseJoinColumns = @JoinColumn(name = "user_id"))
-	private List<User> userList = new ArrayList();
+	@JsonIgnore
+	@ManyToMany(mappedBy = "coursesList", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<User> userList = new ArrayList<>();
 
 	public Course() {
 	}

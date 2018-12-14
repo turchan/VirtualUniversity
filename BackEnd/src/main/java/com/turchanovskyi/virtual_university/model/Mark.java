@@ -7,17 +7,17 @@ import javax.persistence.*;
 public class Mark {
 
 	@Id
-	@Column(name = "title_id")
+	@Column(name = "mark_id")
 	private String title_id;
 
 	@Column(name = "mark")
 	private int mark;
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id")
 	private User user;
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "course_id")
 	private Course course;
 
