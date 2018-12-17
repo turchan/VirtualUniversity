@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-@Repository()
+@Repository
 @Transactional
 @Service("userService")
 public class UserServiceImpl implements UserService {
@@ -34,8 +34,8 @@ public class UserServiceImpl implements UserService {
 
 	@Transactional(readOnly = true)
 	@Override
-	public User findByEmail(String email) {
-		return userRepository.findByEmail(email);
+	public User findByLogin(String login) {
+		return userRepository.findByLogin(login);
 	}
 
 	@Transactional
@@ -48,10 +48,5 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void deleteById(Long id) {
 		userRepository.deleteById(id);
-	}
-
-	@Override
-	public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-		return userRepository.findByEmail(s);
 	}
 }

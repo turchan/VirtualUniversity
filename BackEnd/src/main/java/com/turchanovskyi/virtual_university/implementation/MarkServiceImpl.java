@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-@Repository("markService")
+@Repository
 @Transactional
 @Service("markService")
 public class MarkServiceImpl implements MarkService {

@@ -11,5 +11,5 @@ export class User {
   email: string;
   city: string;
   role_id: Role;
-  courseList: Array<Course>;
+  coursesList: Array<Course>;
 }

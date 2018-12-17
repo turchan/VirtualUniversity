@@ -17,6 +17,20 @@ export class ListUserComponent implements OnInit {
     this.service.getUsers().subscribe(data => (this.users = data));
   }
 
+  deleteUser(user: User): void
+  {
+    this.service.deleteUser(user.user_id).subscribe(data => {
+      this.users = this.users.filter(c => c !== user);
+    })
+  }
+
+  editUser(user: User): void
+  {
+    localStorage.removeItem("editUserId");
+    localStorage.setItem("editUserId", user.user_id.toString());
+    this.router.navigate(['edit-user'])
+  }
+
   addUser(): void
   {
     this.router.navigate([`add-user`]);
