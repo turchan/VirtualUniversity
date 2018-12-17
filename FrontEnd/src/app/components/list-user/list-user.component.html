@@ -1,0 +1,24 @@
+<div class="container">
+  <h1>asdfasdfasf</h1>
+  <table>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{user.user_id}}</td>
+        <td>{{user.login}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.name}}</td>
+        <td>{{user.surname}}</td>
+        <td>{{user.city}}</td>
+        <td>{{user.role_id}}</td>
+        <td>
+          <table border="0">
+            <tr *ngFor="let course of user.coursesList">
+              <td>{{course.title}}</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+    <button (click)="addUser()">Create user</button>
+  </table>
+</div>

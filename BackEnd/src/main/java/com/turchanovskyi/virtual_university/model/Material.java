@@ -3,7 +3,7 @@ package com.turchanovskyi.virtual_university.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "material")
+@Table(name = "materials")
 public class Material {
 
 	@Id
@@ -17,17 +17,16 @@ public class Material {
 	@Column(name = "description")
 	private String description;
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "course_id")
 	private Course course;
 
 	public Material() {
 	}
 
-	public Material(String title, String description, Course course) {
+	public Material(String title, String description) {
 		this.title = title;
 		this.description = description;
-		this.course = course;
 	}
 
 	public Long getMaterial_id() {

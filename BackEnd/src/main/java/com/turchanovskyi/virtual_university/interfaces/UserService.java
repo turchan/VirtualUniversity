@@ -5,14 +5,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-public interface UserService extends UserDetailsService {
+public interface UserService {
 
 	Iterable<User> findAll();
 	User findById(Long id);
-	User findByEmail(String email);
+	User findByLogin(String login);
 	User save(User user);
 	void deleteById(Long id);
-
-	@Override
-	UserDetails loadUserByUsername(String s) throws UsernameNotFoundException;
 }
