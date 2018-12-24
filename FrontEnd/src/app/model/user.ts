@@ -10,6 +10,6 @@ export class User {
   country: string;
   email: string;
   city: string;
-  role_id: Role;
+  role_id: Array<Role>;
   coursesList: Array<Course>;
 }

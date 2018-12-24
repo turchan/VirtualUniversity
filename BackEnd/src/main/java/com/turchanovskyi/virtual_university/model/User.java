@@ -3,6 +3,7 @@ package com.turchanovskyi.virtual_university.model;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -34,10 +35,11 @@ public class User {
 	@Column(name = "city")
 	private String city;
 
-	@Enumerated(EnumType.STRING)
-	@JoinTable(name = "roles", joinColumns = @JoinColumn(name = "role_id"))
-	@Column(name = "role_id")
-	private Role role_id;
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "users_roles",
+				joinColumns = @JoinColumn(name = "user_id"),
+				inverseJoinColumns = @JoinColumn(name = "role_id"))
+	private Set<Role> role_id;
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "users_courses",
@@ -48,7 +50,7 @@ public class User {
 	public User() {
 	}
 
-	public User(String login, String password, String name, String surname, String country, String email, String city, Role role_id) {
+	public User(String login, String password, String name, String surname, String country, String email, String city, Set<Role> role_id) {
 		this.login = login;
 		this.password = password;
 		this.name = name;
@@ -123,11 +125,11 @@ public class User {
 		this.city = city;
 	}
 
-	public Role getRole_id() {
+	public Set<Role> getRole_id() {
 		return role_id;
 	}
 
-	public void setRole_id(Role role_id) {
+	public void setRole_id(Set<Role> role_id) {
 		this.role_id = role_id;
 	}
 

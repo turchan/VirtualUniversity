@@ -15,7 +15,7 @@ public class UserPrinciple implements UserDetails {
 
 	private static final long serialVersionUID = 1L;
 
-	private Long user_id;
+	private Long id;
 	private String login;
 	@JsonIgnore
 	private String password;
@@ -27,11 +27,11 @@ public class UserPrinciple implements UserDetails {
 
 	private Collection<? extends GrantedAuthority> authorities;
 
-	public UserPrinciple(Long user_id, String login,
+	public UserPrinciple(Long id, String login,
 	                     String password, String name, String surname,
 	                     String country, String email, String city,
 	                     Collection<? extends GrantedAuthority> authorities) {
-		this.user_id = user_id;
+		this.id = id;
 		this.login = login;
 		this.password = password;
 		this.name = name;
@@ -42,10 +42,10 @@ public class UserPrinciple implements UserDetails {
 		this.authorities = authorities;
 	}
 
-	/*public static UserPrinciple build(User user)
+	public static UserPrinciple build(User user)
 	{
 		List<GrantedAuthority> authorities = user.getRole_id().stream().map(role ->
-			new SimpleGrantedAuthority(role.getRole_id())
+				new SimpleGrantedAuthority(role.getName().name())
 		).collect(Collectors.toList());
 
 		return new UserPrinciple(
@@ -57,11 +57,12 @@ public class UserPrinciple implements UserDetails {
 				user.getCountry(),
 				user.getEmail(),
 				user.getCity(),
-				authorities);
-	}*/
+				authorities
+		);
+	}
 
-	public Long getUser_id() {
-		return user_id;
+	public Long getId() {
+		return id;
 	}
 
 	public String getLogin() {
@@ -129,6 +130,6 @@ public class UserPrinciple implements UserDetails {
 		if (obj == null || getClass() != obj.getClass()) return false;
 
 		UserPrinciple user = (UserPrinciple) obj;
-		return Objects.equals(user_id, user.user_id);
+		return Objects.equals(id, user.id);
 	}
 }
