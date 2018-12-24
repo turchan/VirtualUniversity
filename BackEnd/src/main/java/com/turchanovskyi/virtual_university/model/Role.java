@@ -1,17 +1,43 @@
 package com.turchanovskyi.virtual_university.model;
 
-import org.springframework.security.core.GrantedAuthority;
+import org.hibernate.annotations.NaturalId;
 
-import javax.persistence.Table;
+import javax.persistence.*;
 
+@Entity
 @Table(name = "roles")
-public enum Role implements GrantedAuthority {
-		ADMIN,
-		STUDENT,
-		PROFESSOR;
+public class Role  {
 
-	@Override
-	public String getAuthority() {
-		return name();
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "role_id")
+	private int role_id;
+
+	@Enumerated(EnumType.STRING)
+	@NaturalId
+	@Column(name = "name")
+	private RoleName name;
+
+	public Role() {
+	}
+
+	public Role(RoleName name) {
+		this.name = name;
+	}
+
+	public int getRole_id() {
+		return role_id;
+	}
+
+	public void setRole_id(int role_id) {
+		this.role_id = role_id;
+	}
+
+	public RoleName getName() {
+		return name;
+	}
+
+	public void setName(RoleName name) {
+		this.name = name;
 	}
 }

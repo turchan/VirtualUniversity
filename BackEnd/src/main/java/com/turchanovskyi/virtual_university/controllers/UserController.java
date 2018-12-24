@@ -3,6 +3,7 @@ package com.turchanovskyi.virtual_university.controllers;
 import com.turchanovskyi.virtual_university.interfaces.UserService;
 import com.turchanovskyi.virtual_university.model.User;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = {"http://localhost:4200"})
@@ -17,17 +18,18 @@ public class UserController
 	}
 
 	@GetMapping
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public Iterable<User> main()
 	{
 		return userService.findAll();
 	}
 
 	@GetMapping("/{userId}")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public User getUser(@PathVariable Long userId)
 	{
 		return userService.findById(userId);
 	}
-
 
 	@PostMapping("/create")
 	@ResponseStatus(HttpStatus.CREATED)

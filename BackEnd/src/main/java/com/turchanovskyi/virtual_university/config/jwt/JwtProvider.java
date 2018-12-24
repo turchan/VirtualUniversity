@@ -16,17 +16,17 @@ public class JwtProvider {
 	private static final Logger logger = LoggerFactory.getLogger(JwtProvider.class);
 
 	@Value("${turchan.app.jwtSecret}")
-	private String jwtSecret;
+	private String jwtSecret = "jwtTurchanSecretKey";
 
 	@Value("${turchan.app.jwtExpiration}")
-	private int jwtExpiration;
+	private int jwtExpiration = 86400;
 
 	public String generateJwtToken(Authentication authentication)
 	{
 		UserPrinciple userPrinciple = (UserPrinciple) authentication.getPrincipal();
 
 		return Jwts.builder()
-				.setSubject((userPrinciple.getLogin()))
+				.setSubject((userPrinciple.getUsername()))
 				.setIssuedAt(new Date())
 				.setExpiration(new Date((new Date()).getTime() + jwtExpiration * 1000))
 				.signWith(SignatureAlgorithm.HS512, jwtSecret)
