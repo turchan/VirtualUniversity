@@ -36,7 +36,7 @@ export class UserService {
 
   updateUser(user: User): Observable<User>
   {
-    return this.http.put<User>(this.baseUrl, user, {headers: this.httpHeaders});
+    return this.http.put<User>(this.baseUrl + "/update", user, {headers: this.httpHeaders});
   }
 
   deleteUser(id: number): Observable<User>

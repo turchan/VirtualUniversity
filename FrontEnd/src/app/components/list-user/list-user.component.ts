@@ -11,26 +11,24 @@ import { TokenStorageService } from '../../auth/token-storage.service';
 })
 export class ListUserComponent implements OnInit {
   users: User[];
-  info: any;
 
   constructor(private router: Router,
-              private token: TokenStorageService,
               private service: UserService) { }
 
   ngOnInit() {
-    this.info = {
-      token: this.token.getToken(),
-      authorities: this.token.getAuthorities()
-    };
-
     this.service.getUsers().subscribe(data => (this.users = data));
   }
 
-  deleteUser(user: User): void
+  showUser(user: User): void
   {
-    this.service.deleteUser(user.user_id).subscribe(data => {
-      this.users = this.users.filter(c => c !== user);
-    })
+    localStorage.removeItem("showUserId");
+    localStorage.setItem("showUserId", user.user_id.toString());
+    this.router.navigate(['show-user'])
+  }
+
+  addUser(): void
+  {
+    this.router.navigate([`add-user`]);
   }
 
   editUser(user: User): void
@@ -40,8 +38,10 @@ export class ListUserComponent implements OnInit {
     this.router.navigate(['edit-user'])
   }
 
-  addUser(): void
+  deleteUser(user: User): void
   {
-    this.router.navigate([`add-user`]);
+    this.service.deleteUser(user.user_id).subscribe(data => {
+      this.users = this.users.filter(c => c !== user);
+    })
   }
 }

@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router }                             from '@angular/router';
 import { UserService }                        from '../../services/user.service';
 import { first }                              from 'rxjs/operators';
+import { TokenStorageService }                from '../../auth/token-storage.service';
 
 @Component({
   selector: 'app-edit-user',
@@ -31,7 +32,7 @@ export class EditUserComponent implements OnInit {
     }
 
     this.editForm = this.formBuilder.group({
-      id: [],
+      user_id: [],
       login: ['', Validators.required],
       password: ['', Validators.required],
       name: ['', Validators.required],
@@ -39,6 +40,8 @@ export class EditUserComponent implements OnInit {
       country: [''],
       email: ['', Validators.required],
       city: [''],
+      role_id: [],
+      coursesList: []
     });
 
     this.service.getUser(+userId).subscribe(data => {
@@ -52,9 +55,9 @@ export class EditUserComponent implements OnInit {
       .pipe(first())
       .subscribe(data => {
         this.router.navigate(['list-user']);
-      },
+        },
         error => {
-        alert(error);
-      });
+          alert(error);
+        });
   }
 }

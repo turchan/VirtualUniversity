@@ -22,7 +22,7 @@ export class AddUserComponent implements OnInit {
 
   ngOnInit() {
     this.addForm = this.formBuilder.group({
-      id: [],
+      user_id: [],
       login: ['', Validators.required],
       password: ['', Validators.required],
       name: ['', Validators.required],
@@ -30,7 +30,8 @@ export class AddUserComponent implements OnInit {
       country: [''],
       email: ['', Validators.required],
       city: [''],
-      role_id: []
+      role_id: [],
+      coursesList: []
     });
   }
 
@@ -39,10 +40,5 @@ export class AddUserComponent implements OnInit {
       .subscribe(data => {
         this.router.navigate([`list-user`]);
       })
-  }
-
-  listUser(): void
-  {
-    this.router.navigate([`list-user`]);
   }
 }

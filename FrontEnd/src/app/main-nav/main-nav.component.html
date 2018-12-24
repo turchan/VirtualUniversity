@@ -22,9 +22,14 @@
         (click)="drawer.toggle()">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <a routerLink="/main" style="color: white"><span>Virtual University</span></a>
+      <a routerLink="/main" style="color: white"><span>Virtual University</span><mat-icon>home</mat-icon></a>
       <span class="spacer"></span>
-      <a (click)="logout()" routerLink="/login">Logout</a>
+      <div *ngIf="info.token">
+        <div *ngFor="let user of users">
+          <a *ngIf="user.login == info.login" (click)="showUser(user)"><mat-icon>account_box</mat-icon>  {{info.login}}</a>
+          <a *ngIf="user.login == info.login" (click)="logout()" routerLink="/login"><mat-icon>exit_to_app</mat-icon></a>
+        </div>
+      </div>
     </mat-toolbar>
     <ng-content></ng-content>
   </mat-sidenav-content>

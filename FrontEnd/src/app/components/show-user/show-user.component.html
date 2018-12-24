@@ -1,0 +1,13 @@
+<div class="container">
+  <h1>User {{currentUser.login}}</h1>
+  <mat-list role="list">
+    <mat-list-item role="listitem">Login: {{currentUser.login}}</mat-list-item>
+    <mat-list-item role="listitem">Name: {{currentUser.name}}</mat-list-item>
+    <mat-list-item role="listitem">Surname: {{currentUser.surname}}</mat-list-item>
+    <mat-list-item role="listitem">Email: {{currentUser.email}}</mat-list-item>
+    <mat-list-item role="listitem">Country: {{currentUser.country}}</mat-list-item>
+    <mat-list-item role="listitem">City: {{currentUser.city}}</mat-list-item>
+  </mat-list>
+  <br/>
+  <a class="waves-effect waves-light btn-large" (click)="editUser(currentUser)">Edit</a>
+</div>

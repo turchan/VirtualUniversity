@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
+import { User }       from '../model/user';
 
 const TOKEN_KEY = 'AuthToken';
 const LOGIN_KEY = 'AuthLogin';
+const USER_KEY = 'AuthUser';
 const AUTHORITIES_KEY = 'AuthAuthorities';
 
 @Injectable({
@@ -9,6 +11,7 @@ const AUTHORITIES_KEY = 'AuthAuthorities';
 })
 export class TokenStorageService {
   private roles: Array<string> = [];
+
   constructor() { }
 
   signOut() {

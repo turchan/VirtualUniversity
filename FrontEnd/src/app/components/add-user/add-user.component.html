@@ -34,17 +34,15 @@
             <label for="city">City: </label>
           </div>
           <div class="input-field col s12">
-            <mat-form-field>
-              <mat-select formControlName="role_id" placeholder="Role" id="role_id" name="role_id">
-                <mat-option *ngFor="let key of keys" [value]="roles[key]">{{roles[key]}}</mat-option>
-              </mat-select>
-            </mat-form-field>
+            <mat-select formControlName="role_id" placeholder="Role" id="role_id" name="role_id">
+              <mat-option *ngFor="let key of keys; index as i" [value]="i+1">{{key}}</mat-option>
+            </mat-select>
           </div>
         </div>
       </div>
     </div>
 
     <button type="submit">Submit</button>
-    <button (click)="listUser()">Cancel</button>
+    <button routerLink="/list-user">Cancel</button>
   </form>
 </div>

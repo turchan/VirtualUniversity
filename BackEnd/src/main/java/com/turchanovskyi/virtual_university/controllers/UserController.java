@@ -6,7 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(origins = {"http://localhost:4200"})
+@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RestController
 @RequestMapping("/user")
 public class UserController
@@ -32,6 +32,7 @@ public class UserController
 	}
 
 	@PostMapping("/create")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@ResponseStatus(HttpStatus.CREATED)
 	public User createUser(@RequestBody User user)
 	{
@@ -43,6 +44,7 @@ public class UserController
 	}
 
 	@ResponseStatus(HttpStatus.CREATED)
+	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
 	@PutMapping("/update")
 	public User updateUser(@RequestBody User user)
 	{

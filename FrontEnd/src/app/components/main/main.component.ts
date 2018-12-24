@@ -1,6 +1,7 @@
 import { Component, OnInit }   from '@angular/core';
 import { TokenStorageService } from '../../auth/token-storage.service';
 import { Router }              from '@angular/router';
+import { User }                from '../../model/user';
 
 @Component({
   selector: "app-main",
@@ -9,6 +10,7 @@ import { Router }              from '@angular/router';
 })
 export class MainComponent implements OnInit {
   info: any;
+  users: User[];
 
   constructor(private token: TokenStorageService,
               private router: Router) {}

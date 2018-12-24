@@ -16,6 +16,7 @@ import { LayoutModule }             from '@angular/cdk/layout';
 import { MainComponent }            from './components/main/main.component';
 import { LoginComponent }           from './components/login/login.component';
 import { httpInterceptorProviders } from './auth/auth-interceptor';
+import { ShowUserComponent } from './components/show-user/show-user.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { httpInterceptorProviders } from './auth/auth-interceptor';
     ListUserComponent,
     MainNavComponent,
     MainComponent,
-    LoginComponent
+    LoginComponent,
+    ShowUserComponent
   ],
   imports: [
     BrowserModule,
