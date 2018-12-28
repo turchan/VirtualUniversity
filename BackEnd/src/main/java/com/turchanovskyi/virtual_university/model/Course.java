@@ -1,6 +1,5 @@
 package com.turchanovskyi.virtual_university.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -10,7 +9,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "courses")
-public class Course {
+public class Course implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,14 +37,14 @@ public class Course {
 	@OneToMany(mappedBy = "course", fetch = FetchType.LAZY)
 	private List<Mark> markList = new ArrayList<>();
 
-	@JsonIgnore
+	@JsonIgnoreProperties("courserList")
 	@ManyToMany(mappedBy = "coursesList", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<User> userList = new ArrayList<>();
 
 	public Course() {
 	}
 
-	public Course(String title, String password, String professor, String description, List<Material> materialList, String creator) {
+	public Course(String title, String password, String professor, String description, String creator) {
 		this.title = title;
 		this.password = password;
 		this.professor = professor;

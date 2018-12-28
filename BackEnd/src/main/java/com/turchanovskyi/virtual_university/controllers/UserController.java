@@ -18,33 +18,21 @@ public class UserController
 	}
 
 	@GetMapping
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_PROFESSOR') or hasRole('ROLE_ADMIN')")
 	public Iterable<User> main()
 	{
 		return userService.findAll();
 	}
 
 	@GetMapping("/{userId}")
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_PROFESSOR') or hasRole('ROLE_ADMIN')")
 	public User getUser(@PathVariable Long userId)
 	{
 		return userService.findById(userId);
 	}
 
-	@PostMapping("/create")
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@ResponseStatus(HttpStatus.CREATED)
-	public User createUser(@RequestBody User user)
-	{
-		user.setUser_id(null);
-
-		userService.save(user);
-
-		return user;
-	}
-
-	@ResponseStatus(HttpStatus.CREATED)
-	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
+	@PreAuthorize("hasAnyRole()")
 	@PutMapping("/update")
 	public User updateUser(@RequestBody User user)
 	{
@@ -59,5 +47,4 @@ public class UserController
 	{
 		userService.deleteById(userId);
 	}
-
 }

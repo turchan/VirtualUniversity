@@ -1,0 +1,16 @@
+<div class="container">
+  <h1>List of users</h1>
+  <table>
+    <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{user.login}}</td>
+      <td>{{user.name}}</td>
+      <td>{{user.surname}}</td>
+      <td>{{user.email}}</td>
+      <td>
+        <button mat-raised-button="" color="primary" (click)="addUser(user)">Add User</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

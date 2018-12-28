@@ -1,0 +1,30 @@
+<div class="container">
+  <h1>Course {{currentCourse.title}}</h1>
+  <mat-list>
+    <mat-list-item role="listitem">Title: {{currentCourse.title}}</mat-list-item>
+    <mat-list-item role="listitem">Professor: {{currentCourse.professor}}</mat-list-item>
+  </mat-list>
+  <br/>
+
+  <div *ngIf="info.login == currentCourse.creator">
+    <button mat-raised-button="" color="primary" (click)="editCourse(currentCourse)" style="margin-left: 17px">Edit</button>
+  </div>
+
+  <div *ngIf="info.authorities == 'ROLE_PROFESSOR' || info.authorities == 'ROLE_ADMIN'">
+    <h1>List of Users</h1>
+    <table>
+      <tbody>
+      <tr *ngFor="let user of currentCourse.userList">
+        <td>{{user.login}}</td>
+        <td>{{user.name}}</td>
+        <td>{{user.surname}}</td>
+        <td>{{user.email}}</td>
+        <td>
+          <button mat-raised-button="" color="primary" (click)="deleteUser(user)">Delete</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <button mat-raised-button="" color="primary" (click)="addUser(currentCourse)">Add User</button>
+  </div>
+</div>

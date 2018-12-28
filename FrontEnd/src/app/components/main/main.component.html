@@ -1,4 +1,4 @@
-<div *ngIf="info.token; else loggedOut">
+<div class="container">
   <h1>General Information</h1>
   <p>
     Lorem Ipsum is simply dummy text of the printing and typesetting industry.
@@ -8,18 +8,4 @@
     It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with
     desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
   </p>
-
-  <p *ngIf="info.authorities == 'ROLE_ADMIN'">
-    <strong>Username:</strong> {{info.login}}<br/>
-    <strong>Roles:</strong> {{info.authorities}}<br />
-    <strong>Token:</strong> {{info.token}}.
-  </p>
-  <p *ngIf="info.authorities == 'ROLE_USER'">
-    Fuck Russia
-  </p>
-
 </div>
-
-<ng-template #loggedOut>
-  Please login.
-</ng-template>

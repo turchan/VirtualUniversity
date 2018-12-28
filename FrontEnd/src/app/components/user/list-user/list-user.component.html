@@ -1,5 +1,5 @@
 <div class="container">
-  <h1>asdfasdfasf</h1>
+  <h1>List of users</h1>
   <table>
     <tbody>
     <tr *ngFor="let user of users">
@@ -25,6 +25,8 @@
       </td>
     </tr>
     </tbody>
-    <button (click)="addUser()">Create user</button>
+    <button (click)="createUser()">Create user</button>
+    <button (click)="createProfessor()">Create professor</button>
+    <button (click)="createAdmin()">Create Admin</button>
   </table>
 </div>

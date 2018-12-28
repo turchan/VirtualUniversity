@@ -10,4 +10,23 @@
   </mat-list>
   <br/>
   <a class="waves-effect waves-light btn-large" (click)="editUser(currentUser)">Edit</a>
+
+  <div *ngIf="info.authorities == 'ROLE_PROFESSOR'">
+    <h1>Professor's courses</h1>
+    <div *ngFor="let course of courses">
+      <div *ngIf="info.login == course.creator">
+        <table>
+          <tbody>
+            <tr>
+              <td (click)="showCourse(course)" routerLink="/show-course">{{course.title}}</td>
+              <td>
+                <button mat-raised-button="" color="warn" (click)="deleteCourse(course)">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <button mat-raised-button="" color="primary" routerLink="/create-course">Create Course</button>
+  </div>
 </div>

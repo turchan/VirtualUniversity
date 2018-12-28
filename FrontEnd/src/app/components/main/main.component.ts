@@ -10,7 +10,6 @@ import { User }                from '../../model/user';
 })
 export class MainComponent implements OnInit {
   info: any;
-  users: User[];
 
   constructor(private token: TokenStorageService,
               private router: Router) {}

@@ -14,7 +14,6 @@ public class Role  {
 	private int role_id;
 
 	@Enumerated(EnumType.STRING)
-	@NaturalId
 	@Column(name = "name")
 	private RoleName name;
 
