@@ -7,11 +7,14 @@ import { ShowUserComponent }        from './components/user/show-user/show-user.
 import { CreateUserComponent }      from './components/user/create-user/create-user.component';
 import { CreateAdminComponent }     from './components/user/create-admin/create-admin.component';
 import { CreateProfessorComponent } from './components/user/create-professor/create-professor.component';
-import { ListCourseComponent }      from './components/course/list-course/list-course.component';
+import { ListCourseComponent }     from './components/course/list-course/list-course.component';
 import { ShowCourseComponent }      from './components/course/show-course/show-course.component';
-import { EditCourseComponent }      from './components/course/edit-course/edit-course.component';
-import { CreateCourseComponent }    from './components/course/create-course/create-course.component';
-import { AddUserCourseComponent }   from './components/course/add-user-course/add-user-course.component';
+import { EditCourseComponent }       from './components/course/edit-course/edit-course.component';
+import { CreateCourseComponent }     from './components/course/create-course/create-course.component';
+import { AddUserCourseComponent }    from './components/course/add-user-course/add-user-course.component';
+import { AddMarksCourseComponent }   from './components/course/add-marks-course/add-marks-course.component';
+import { ShowMarksCourseComponent }  from './components/course/show-marks-course/show-marks-course.component';
+import { UpdateMarkCourseComponent } from './components/course/update-mark-course/update-mark-course.component';
 
 export const ROUTES: Routes = [
   { path: 'login', component: LoginComponent },
@@ -27,6 +30,9 @@ export const ROUTES: Routes = [
   { path: 'edit-course', component: EditCourseComponent},
   { path: 'create-course', component: CreateCourseComponent},
   { path: 'addUser-course', component: AddUserCourseComponent},
+  { path: 'addMark-course', component: AddMarksCourseComponent},
+  { path: 'showMark-course', component: ShowMarksCourseComponent},
+  { path: 'updateMark-course', component: UpdateMarkCourseComponent},
   { path: '', pathMatch: 'full', redirectTo: 'main' },
   { path: '**', pathMatch: 'full', redirectTo: 'main' }
 ];

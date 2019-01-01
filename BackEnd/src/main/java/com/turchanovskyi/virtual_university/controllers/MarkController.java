@@ -1,8 +1,13 @@
 package com.turchanovskyi.virtual_university.controllers;
 
+import com.turchanovskyi.virtual_university.interfaces.CourseService;
 import com.turchanovskyi.virtual_university.interfaces.MarkService;
+import com.turchanovskyi.virtual_university.interfaces.UserService;
+import com.turchanovskyi.virtual_university.model.Course;
 import com.turchanovskyi.virtual_university.model.Mark;
+import com.turchanovskyi.virtual_university.model.User;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = {"http://localhost:4200"})
@@ -11,9 +16,13 @@ import org.springframework.web.bind.annotation.*;
 public class MarkController {
 
 	private final MarkService markService;
+	private final UserService userService;
+	private final CourseService courseService;
 
-	public MarkController(MarkService markService) {
+	public MarkController(MarkService markService, UserService userService, CourseService courseService) {
 		this.markService = markService;
+		this.userService = userService;
+		this.courseService = courseService;
 	}
 
 	@GetMapping
@@ -23,16 +32,23 @@ public class MarkController {
 	}
 
 	@GetMapping("/{markId}")
-	public Mark getMark(@PathVariable String markId)
+	public Mark getMark(@PathVariable Long markId)
 	{
 		return markService.findById(markId);
 	}
 
-	@PostMapping("/add")
+	@PostMapping("/add/{userId}/{courseId}")
+	@PreAuthorize("hasRole('ROLE_PROFESSOR')")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Mark addMark(@RequestBody Mark mark)
+	public Mark addMark(@RequestBody Mark mark, @PathVariable Long userId, @PathVariable Long courseId)
 	{
-		mark.setTitle_id(null);
+		User user = userService.findById(userId);
+		Course course = courseService.findById(courseId);
+
+		mark.setMark_id(null);
+		mark.setUser(user);
+		mark.setCourse(course);
+		user.getMarkList().add(mark);
 
 		markService.save(mark);
 
@@ -40,6 +56,7 @@ public class MarkController {
 	}
 
 	@PutMapping("/update")
+	@PreAuthorize("hasRole('ROLE_PROFESSOR')")
 	@ResponseStatus(HttpStatus.CREATED)
 	public Mark updateMark(@RequestBody Mark mark)
 	{
@@ -49,8 +66,9 @@ public class MarkController {
 	}
 
 	@DeleteMapping("/delete/{markId}")
+	@PreAuthorize("hasRole('ROLE_PROFESSOR')")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void deleteMark(@PathVariable String markId)
+	public void deleteMark(@PathVariable Long markId)
 	{
 		markService.deleteById(markId);
 	}

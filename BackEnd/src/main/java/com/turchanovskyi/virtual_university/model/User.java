@@ -1,7 +1,6 @@
 package com.turchanovskyi.virtual_university.model;
 
-
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -47,12 +46,16 @@ public class User implements Serializable {
 				inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> role_id = new HashSet<>();
 
-	@JsonIgnoreProperties("userList")
+	@JsonIgnoreProperties({"userList", "markList"})
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "users_courses",
 				joinColumns = @JoinColumn(name = "user_id"),
 				inverseJoinColumns = @JoinColumn(name = "course_id"))
 	private List<Course> coursesList = new ArrayList<>();
+
+	@JsonIgnoreProperties("user")
+	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<Mark> markList = new ArrayList<>();
 
 	public User() {
 	}
@@ -145,5 +148,13 @@ public class User implements Serializable {
 
 	public void setCoursesList(List<Course> coursesList) {
 		this.coursesList = coursesList;
+	}
+
+	public List<Mark> getMarkList() {
+		return markList;
+	}
+
+	public void setMarkList(List<Mark> markList) {
+		this.markList = markList;
 	}
 }

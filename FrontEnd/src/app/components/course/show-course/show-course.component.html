@@ -10,7 +10,7 @@
     <button mat-raised-button="" color="primary" (click)="editCourse(currentCourse)" style="margin-left: 17px">Edit</button>
   </div>
 
-  <div *ngIf="info.authorities == 'ROLE_PROFESSOR' || info.authorities == 'ROLE_ADMIN'">
+  <div *ngIf="info.authorities == 'ROLE_PROFESSOR' || info.authorities == 'ROLE_ADMIN'; else roleUser">
     <h1>List of Users</h1>
     <table>
       <tbody>
@@ -20,11 +20,28 @@
         <td>{{user.surname}}</td>
         <td>{{user.email}}</td>
         <td>
-          <button mat-raised-button="" color="primary" (click)="deleteUser(user)">Delete</button>
+          <button mat-raised-button="" color="primary" (click)="showMarks(currentCourse, user)">Marks</button>
+        </td>
+        <td>
+          <button mat-raised-button="" color="warn" (click)="deleteUser(user)">Delete</button>
         </td>
       </tr>
       </tbody>
     </table>
-    <button mat-raised-button="" color="primary" (click)="addUser(currentCourse)">Add User</button>
+    <button mat-raised-button="" color="primary" (click)="addUser(currentCourse)">Add User</button><br/>
   </div>
+
+  <ng-template #roleUser>
+    <h1>Marks</h1>
+      <table>
+        <tbody>
+          <tr *ngFor="let mark of currentCourse.markList">
+            <td>{{mark.user.login}}</td>
+            <td>{{mark.title}}</td>
+            <td>{{mark.mark}}</td>
+            <td>{{mark.course}}</td>
+          </tr>
+        </tbody>
+      </table>
+  </ng-template>
 </div>

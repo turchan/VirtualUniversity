@@ -21,9 +21,12 @@ import { CreateAdminComponent }     from './components/user/create-admin/create-
 import { CreateProfessorComponent } from './components/user/create-professor/create-professor.component';
 import { ListCourseComponent }      from './components/course/list-course/list-course.component';
 import { ShowCourseComponent } from './components/course/show-course/show-course.component';
-import { EditCourseComponent } from './components/course/edit-course/edit-course.component';
-import { CreateCourseComponent } from './components/course/create-course/create-course.component';
-import { AddUserCourseComponent } from './components/course/add-user-course/add-user-course.component';
+import { EditCourseComponent }       from './components/course/edit-course/edit-course.component';
+import { CreateCourseComponent }     from './components/course/create-course/create-course.component';
+import { AddUserCourseComponent }    from './components/course/add-user-course/add-user-course.component';
+import { AddMarksCourseComponent }   from './components/course/add-marks-course/add-marks-course.component';
+import { ShowMarksCourseComponent }  from './components/course/show-marks-course/show-marks-course.component';
+import { UpdateMarkCourseComponent } from './components/course/update-mark-course/update-mark-course.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +44,10 @@ import { AddUserCourseComponent } from './components/course/add-user-course/add-
     ShowCourseComponent,
     EditCourseComponent,
     CreateCourseComponent,
-    AddUserCourseComponent
+    AddUserCourseComponent,
+    AddMarksCourseComponent,
+    ShowMarksCourseComponent,
+    UpdateMarkCourseComponent
   ],
   imports: [
     BrowserModule,

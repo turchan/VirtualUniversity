@@ -1,10 +1,11 @@
 package com.turchanovskyi.virtual_university.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "materials")
-public class Material {
+public class Material implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

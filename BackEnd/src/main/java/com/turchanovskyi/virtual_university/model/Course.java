@@ -34,12 +34,13 @@ public class Course implements Serializable {
 	@Column(name = "creator")
 	private String creator;
 
-	@OneToMany(mappedBy = "course", fetch = FetchType.LAZY)
-	private List<Mark> markList = new ArrayList<>();
-
-	@JsonIgnoreProperties("courserList")
+	@JsonIgnoreProperties({"courserList", "markList"})
 	@ManyToMany(mappedBy = "coursesList", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<User> userList = new ArrayList<>();
+
+	@JsonIgnoreProperties("course")
+	@OneToMany(mappedBy = "course", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<Mark> markList = new ArrayList<>();
 
 	public Course() {
 	}

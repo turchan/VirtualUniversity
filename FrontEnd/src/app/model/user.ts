@@ -1,5 +1,6 @@
-import { Role } from './role';
+import { Role }   from './role';
 import { Course } from './course';
+import { Mark }   from './mark';
 
 export class User {
   user_id: number;
@@ -12,4 +13,5 @@ export class User {
   city: string;
   role_id: Array<Role>;
   coursesList: Array<Course>;
+  markList: Array<Mark>;
 }

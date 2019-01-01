@@ -26,7 +26,7 @@ public class MarkServiceImpl implements MarkService {
 
 	@Transactional(readOnly = true)
 	@Override
-	public Mark findById(String id) {
+	public Mark findById(Long id) {
 		return markRepository.findById(id).get();
 	}
 
@@ -38,7 +38,7 @@ public class MarkServiceImpl implements MarkService {
 
 	@Transactional
 	@Override
-	public void deleteById(String id) {
+	public void deleteById(Long id) {
 		markRepository.deleteById(id);
 	}
 }

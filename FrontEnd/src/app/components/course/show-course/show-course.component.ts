@@ -4,6 +4,7 @@ import { Router }              from '@angular/router';
 import { CourseService }       from '../../../services/course.service';
 import { TokenStorageService } from '../../../auth/token-storage.service';
 import { User }                from '../../../model/user';
+import { UserService }         from '../../../services/user.service';
 
 @Component({
   selector: 'app-show-course',
@@ -13,10 +14,12 @@ import { User }                from '../../../model/user';
 export class ShowCourseComponent implements OnInit {
 
   currentCourse: Course;
+  currentUser: User;
   info: any;
 
   constructor(private router: Router,
-              private service: CourseService,
+              private courseService: CourseService,
+              private userService: UserService,
               private token: TokenStorageService) { }
 
   ngOnInit() {
@@ -35,7 +38,7 @@ export class ShowCourseComponent implements OnInit {
       return;
     }
 
-    this.service.getCourse(+courseId).subscribe(data => (this.currentCourse = data));
+    this.courseService.getCourse(+courseId).subscribe(data => (this.currentCourse = data));
   }
 
   editCourse(course: Course): void
@@ -52,9 +55,18 @@ export class ShowCourseComponent implements OnInit {
     this.router.navigate(['addUser-course']);
   }
 
+  showMarks(course: Course, user: User): void
+  {
+    localStorage.removeItem('courseId');
+    localStorage.removeItem('userId');
+    localStorage.setItem('courseId', course.course_id.toString());
+    localStorage.setItem('userId', user.user_id.toString());
+    this.router.navigate(["showMark-course"]);
+  }
+
   deleteUser(user: User): void
   {
-    this.service.deleteUser(this.currentCourse.course_id, user.user_id).subscribe(data => {
+    this.courseService.deleteUser(this.currentCourse.course_id, user.user_id).subscribe(data => {
       this.currentCourse.userList = this.currentCourse.userList.filter(value => value !== user);
     })
   }

@@ -11,8 +11,8 @@
   <br/>
   <a class="waves-effect waves-light btn-large" (click)="editUser(currentUser)">Edit</a>
 
-  <div *ngIf="info.authorities == 'ROLE_PROFESSOR'">
-    <h1>Professor's courses</h1>
+  <h1>Your courses</h1>
+  <div *ngIf="info.authorities == 'ROLE_PROFESSOR'; else roleUser">
     <div *ngFor="let course of courses">
       <div *ngIf="info.login == course.creator">
         <table>
@@ -29,4 +29,17 @@
     </div>
     <button mat-raised-button="" color="primary" routerLink="/create-course">Create Course</button>
   </div>
+
+  <ng-template #roleUser>
+    <div *ngFor="let course of currentUser.coursesList">
+      <table>
+        <tbody>
+          <tr (click)="showCourse(course)" routerLink="/show-course">
+            <td>{{course.title}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </ng-template>
 </div>
