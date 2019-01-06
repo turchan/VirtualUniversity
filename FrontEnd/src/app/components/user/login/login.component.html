@@ -1,0 +1,26 @@
+<div *ngIf="isLoggedIn; else loggedOut">
+  Logged in as {{roles}}.
+</div>
+
+<ng-template #loggedOut>
+  <div class="container">
+    <h2>Login User</h2>
+    <form [formGroup]="authForm" (ngSubmit)="onSubmit()" novalidate>
+      <div class="row">
+        <div class="col s12">
+          <div class="row">
+            <div class="input-field col s12">
+              <input formControlName="login" type="text" id="login" placeholder="Login" class="validate" name="login" [(ngModel)]="form.login" required />
+              <label for="login">Login: </label>
+            </div>
+            <div class="input-field col s12">
+              <input formControlName="password" type="password" id="password" placeholder="Password" class="validate" name="password" [(ngModel)]="form.password" required />
+              <label for="password">Password: </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button mat-raised-button="" color="primary" style="margin-left: 45%">Login</button>
+    </form>
+  </div>
+</ng-template>

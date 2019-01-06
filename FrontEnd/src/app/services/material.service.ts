@@ -3,13 +3,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable }              from 'rxjs';
 import { Material }                from '../model/material';
 import { map }                     from 'rxjs/operators';
+import { Course }                  from '../model/course';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MaterialService {
 
-  private baseUrl = "http://localhost:8080/materials"
+  private baseUrl = "http://localhost:8080/materials";
   private httpHeaders = new HttpHeaders({"Content-Type": "application/json"});
 
   constructor(private http: HttpClient) {}
@@ -26,9 +27,9 @@ export class MaterialService {
     return this.http.get<Material>(`${this.baseUrl}/{$id}`);
   }
 
-  createMaterial(material: Material): Observable<Material>
+  createMaterial(material: Material, courseId: Course): Observable<Material>
   {
-    return this.http.post<Material>(this.baseUrl + '/create', material, {headers: this.httpHeaders});
+      return this.http.post<Material>(this.baseUrl + `/add/${courseId.course_id}`, material, {headers: this.httpHeaders});
   }
 
   updateMaterial(material: Material): Observable<Material>

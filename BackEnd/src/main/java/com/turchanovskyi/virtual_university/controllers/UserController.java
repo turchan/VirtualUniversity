@@ -6,7 +6,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(origins = {"http://localhost:4200"})
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RestController
 @RequestMapping("/user")
 public class UserController
@@ -18,31 +22,37 @@ public class UserController
 	}
 
 	@GetMapping
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_PROFESSOR') or hasRole('ROLE_ADMIN')")
 	public Iterable<User> main()
 	{
 		return userService.findAll();
 	}
 
 	@GetMapping("/{userId}")
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_PROFESSOR') or hasRole('ROLE_ADMIN')")
 	public User getUser(@PathVariable Long userId)
 	{
 		return userService.findById(userId);
 	}
 
-	@PostMapping("/create")
-	@ResponseStatus(HttpStatus.CREATED)
-	public User createUser(@RequestBody User user)
+	@GetMapping("/search/{surname}")
+	public List<User> searchUser(@PathVariable String surname)
 	{
-		user.setUser_id(null);
+		List<User> userList = new ArrayList<>();
 
-		userService.save(user);
+		List<User> findUser = userService.findBySurname(surname);
+		Iterator<User> iter = findUser.iterator();
 
-		return user;
+		while (iter.hasNext())
+		{
+			userList.add(iter.next());
+		}
+
+		return userList;
 	}
 
 	@ResponseStatus(HttpStatus.CREATED)
+	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_PROFESSOR') or hasRole('ROLE_ADMIN')")
 	@PutMapping("/update")
 	public User updateUser(@RequestBody User user)
 	{
@@ -57,5 +67,4 @@ public class UserController
 	{
 		userService.deleteById(userId);
 	}
-
 }

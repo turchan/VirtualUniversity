@@ -2,7 +2,7 @@ import { Injectable }              from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable }              from 'rxjs/internal/Observable';
 import { User }                    from '../model/user';
-import { map }                     from 'rxjs/operators';
+import { filter, map }             from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -29,14 +29,14 @@ export class UserService {
     return this.http.get<User>(`${this.baseUrl}/${id}`);
   }
 
-  createUser(user: User): Observable<User>
+  searchUser(surname: string): Observable<any>
   {
-    return this.http.post<User>(this.baseUrl + "/create", user, {headers: this.httpHeaders});
+    return this.http.get(`${this.baseUrl}/search/${surname}`);
   }
 
   updateUser(user: User): Observable<User>
   {
-    return this.http.put<User>(this.baseUrl, user, {headers: this.httpHeaders});
+    return this.http.put<User>(this.baseUrl + "/update", user, {headers: this.httpHeaders});
   }
 
   deleteUser(id: number): Observable<User>

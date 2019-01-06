@@ -1,22 +1,31 @@
 package com.turchanovskyi.virtual_university.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "marks")
-public class Mark {
+public class Mark implements Serializable {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "mark_id")
-	private String title_id;
+	private Long mark_id;
+
+	@Column(name = "title")
+	private String title;
 
 	@Column(name = "mark")
 	private int mark;
 
+	@JsonIgnoreProperties({"coursesList", "markList"})
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id")
 	private User user;
 
+	@JsonIgnoreProperties("userList")
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "course_id")
 	private Course course;
@@ -24,19 +33,28 @@ public class Mark {
 	public Mark() {
 	}
 
-	public Mark(String title_id, int mark, User user, Course course) {
-		this.title_id = title_id;
+	public Mark(Long mark_id, String title, int mark, User user, Course course) {
+		this.mark_id = mark_id;
+		this.title = title;
 		this.mark = mark;
 		this.user = user;
 		this.course = course;
 	}
 
-	public String getTitle_id() {
-		return title_id;
+	public Long getMark_id() {
+		return mark_id;
 	}
 
-	public void setTitle_id(String title_id) {
-		this.title_id = title_id;
+	public void setMark_id(Long mark_id) {
+		this.mark_id = mark_id;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public int getMark() {

@@ -1,0 +1,34 @@
+<div class="container">
+  <button mat-raised-button="" color="primary" routerLink="/search-user" style="margin-top: 60px; margin-left: 35%; margin-bottom: 5px">
+    Search User</button>
+  <h1>List of users</h1>
+  <table>
+    <thead>
+    <tr>
+      <td>Login</td>
+      <td>Email</td>
+      <td>Name</td>
+      <td>Surname</td>
+      <td>Role</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{user.login}}</td>
+      <td>{{user.email}}</td>
+      <td>{{user.name}}</td>
+      <td>{{user.surname}}</td>
+      <td>
+        <table border="0">
+          <tr *ngFor="let role of user.role_id">
+            <td>{{role.name}}</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <button mat-raised-button="" color="primary" (click)="createUser()" style="margin: 5px">Create student</button>
+  <button mat-raised-button="" color="primary" (click)="createProfessor()" style="margin: 5px">Create professor</button>
+  <button mat-raised-button="" color="primary" (click)="createAdmin()" style="margin: 5px">Create Admin</button>
+</div>

@@ -1,0 +1,37 @@
+<div class="container">
+  <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+
+    <div class="row">
+      <div class="col s12">
+        <div class="row">
+          <div class="input-field col s12">
+            <input formControlName="title" type="text" id="title" placeholder="Title" class="validate" name="title" required>
+            <label for="title">Title: </label>
+          </div>
+          <div class="input-field col s12">
+            <textarea formControlName="description" id="description" placeholder="Description" class="materialize-textarea validate" name="description" required></textarea>
+            <label for="description">Description: </label>
+          </div>
+          <div *ngIf="currentFileUpload" class="progress">
+            <div class="mat-progress-bar mat-progress-bar-info" role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
+                 aria-valuemin="0" aria-valuemax="100" [ngStyle]="{width:progress.percentage+'%'}">
+              {{progress.percentage}}%
+            </div>
+          </div>
+
+          <label class="btn" for="file">
+            <input formControlName="file" name="file" id="file" type="file" (change)="selectFile($event)">
+          </label>
+          <button mat-raised-button="" color="primary" [disabled]="!selectedFiles" (click)="upload()">Upload</button>
+        </div>
+
+        <div class="input-field col s12">
+          <input hidden formControlName="course_id" name="course_id" id="course_id" [(ngModel)]="currentCourse.course_id"/>
+          <label hidden for="course_id">course_id</label>
+        </div>
+      </div>
+    </div>
+
+    <button mat-raised-button="" color="primary">Submit</button>
+  </form>
+</div>

@@ -1,0 +1,31 @@
+<div class="container">
+  <h2>Editing Course</h2>
+  <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+
+    <div class="row">
+      <div class="col s12">
+        <div class="row">
+          <div class="input-field col s12">
+            <input formControlName="title" type="text" id="title" placeholder="Title" class="validate" name="title" required>
+            <label for="title">Title: </label>
+          </div>
+          <div class="input-field col s12">
+            <input formControlName="password" type="password" id="password" placeholder="Password" class="validate" name="password" required>
+            <label for="password">Password: </label>
+          </div>
+          <div class="input-field col s12">
+            <input formControlName="professor" type="text" id="professor" placeholder="Professor" class="validate" name="professor" required>
+            <label for="professor">Professor: </label>
+          </div>
+          <div class="input-field col s12">
+            <textarea formControlName="description" id="description" placeholder="Description" class="materialize-textarea validate" name="description" required></textarea>
+            <label for="description">Description: </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button mat-raised-button="" color="primary" style="margin: 5px">Submit</button>
+    <button mat-raised-button="" color="accent" routerLink="/show-course">Cancel</button>
+  </form>
+</div>

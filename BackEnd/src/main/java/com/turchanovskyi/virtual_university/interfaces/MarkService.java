@@ -5,7 +5,7 @@ import com.turchanovskyi.virtual_university.model.Mark;
 public interface MarkService {
 
 	Iterable<Mark> findAll();
-	Mark findById(String id);
+	Mark findById(Long id);
 	Mark save(Mark mark);
-	void deleteById(String id);
+	void deleteById(Long id);
 }

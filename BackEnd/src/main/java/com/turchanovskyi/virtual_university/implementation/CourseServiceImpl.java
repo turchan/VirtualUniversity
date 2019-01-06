@@ -7,6 +7,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Repository
 @Transactional
 @Service("courseService")
@@ -28,6 +30,12 @@ public class CourseServiceImpl implements CourseService {
 	@Override
 	public Course findById(Long id) {
 		return courseRepository.findById(id).get();
+	}
+
+	@Transactional(readOnly = true)
+	@Override
+	public List<Course> findByTitle(String title) {
+		return courseRepository.findByTitle(title);
 	}
 
 	@Transactional

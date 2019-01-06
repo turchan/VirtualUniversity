@@ -1,13 +1,16 @@
 package com.turchanovskyi.virtual_university.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "materials")
-public class Material {
+public class Material implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "material_id")
 	private Long material_id;
 
@@ -17,6 +20,10 @@ public class Material {
 	@Column(name = "description")
 	private String description;
 
+	@OneToMany(mappedBy = "material", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@Column(name = "file")
+	private Set<File> fileSet = new HashSet<>();
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "course_id")
 	private Course course;
@@ -24,9 +31,10 @@ public class Material {
 	public Material() {
 	}
 
-	public Material(String title, String description) {
+	public Material(String title, String description, Set<File> fileSet) {
 		this.title = title;
 		this.description = description;
+		this.fileSet = fileSet;
 	}
 
 	public Long getMaterial_id() {
@@ -53,11 +61,19 @@ public class Material {
 		this.description = description;
 	}
 
+	public Set<File> getFileSet() {
+		return fileSet;
+	}
+
+	public void setFileSet(Set<File> fileSet) {
+		this.fileSet = fileSet;
+	}
+
 	public Course getCourse() {
 		return course;
 	}
 
 	public void setCourse(Course course) {
-		this.course = course;
+	this.course = course;
 	}
 }

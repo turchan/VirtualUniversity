@@ -1,0 +1,42 @@
+<div class="container">
+  <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+
+    <table>
+      <thead>
+        <tr>
+          <td>Name</td>
+          <td>Surname</td>
+          <td><label for="title">Title</label></td>
+          <td><label for="mark">Mark</label></td>
+          <td hidden><label for="title">Title</label></td>
+          <td hidden><label for="course_id">Course</label></td>
+          <td hidden><label for="user_id">User</label></td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td id="name">
+            {{currentUser.name}}
+          </td>
+          <td id="surname">
+              {{currentUser.surname}}
+          </td>
+          <td>
+            <input formControlName="title" name="title" id="title" class="input-field"/>
+          </td>
+          <td>
+            <input formControlName="mark" name="mark" id="mark" class="input-field"/>
+            <input hidden formControlName="course_id" name="course_id" id="course_id" class="input-field" [(ngModel)]="currentCourse.course_id"/>
+            <input hidden formControlName="user_id" name="user_id" id="user_id" class="input-field" [(ngModel)]="currentUser.user_id"/>
+            <!--<select formControlName="mark" id="mark" name="mark">
+              <option *ngFor="let mark of marks" [ngValue]="mark">{{mark}}</option>
+            </select> -->
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <button mat-raised-button="" color="primary" style="margin: 5px">Submit</button>
+    <button mat-raised-button="" color="accent" routerLink="/show-course">Cancel</button>
+  </form>
+</div>

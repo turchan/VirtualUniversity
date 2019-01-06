@@ -1,13 +1,18 @@
 package com.turchanovskyi.virtual_university.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class User implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,18 +44,23 @@ public class User {
 	@JoinTable(name = "users_roles",
 				joinColumns = @JoinColumn(name = "user_id"),
 				inverseJoinColumns = @JoinColumn(name = "role_id"))
-	private Set<Role> role_id;
+	private Set<Role> role_id = new HashSet<>();
 
+	@JsonIgnoreProperties({"userList", "markList"})
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "users_courses",
 				joinColumns = @JoinColumn(name = "user_id"),
 				inverseJoinColumns = @JoinColumn(name = "course_id"))
-	private List<Course> coursesList;
+	private List<Course> coursesList = new ArrayList<>();
+
+	@JsonIgnoreProperties("user")
+	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<Mark> markList = new ArrayList<>();
 
 	public User() {
 	}
 
-	public User(String login, String password, String name, String surname, String country, String email, String city, Set<Role> role_id) {
+	public User(String login, String password, String name, String surname, String country, String email, String city) {
 		this.login = login;
 		this.password = password;
 		this.name = name;
@@ -58,7 +68,6 @@ public class User {
 		this.country = country;
 		this.email = email;
 		this.city = city;
-		this.role_id = role_id;
 	}
 
 	public Long getUser_id() {
@@ -139,5 +148,13 @@ public class User {
 
 	public void setCoursesList(List<Course> coursesList) {
 		this.coursesList = coursesList;
+	}
+
+	public List<Mark> getMarkList() {
+		return markList;
+	}
+
+	public void setMarkList(List<Mark> markList) {
+		this.markList = markList;
 	}
 }

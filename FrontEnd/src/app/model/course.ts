@@ -8,7 +8,7 @@ export class Course {
   title: string;
   password: string;
   professor: string;
-  descriprion: string;
+  description: string;
   materialList: Array<Material>;
   creator: string;
   markList: Array<Mark>;

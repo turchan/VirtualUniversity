@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Repository
 @Transactional
 @Service("userService")
@@ -36,6 +38,12 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User findByLogin(String login) {
 		return userRepository.findByLogin(login);
+	}
+
+	@Transactional(readOnly = true)
+	@Override
+	public List<User> findBySurname(String surname) {
+		return userRepository.findBySurname(surname);
 	}
 
 	@Transactional

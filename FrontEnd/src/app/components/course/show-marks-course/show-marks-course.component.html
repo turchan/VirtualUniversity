@@ -1,0 +1,18 @@
+<div class="container">
+  <h1>{{currentUser.name}} {{currentUser.surname}}'s marks</h1>
+  <table>
+    <tbody>
+    <tr *ngFor="let mark of currentUser.markList">
+      <td>{{currentUser.name}}</td>
+      <td>{{currentUser.surname}}</td>
+      <td>{{mark.title}}</td>
+      <td>{{mark.mark}}</td>
+      <td>
+        <button mat-raised-button="" color="warn" (click)="deleteMark(mark)">Delete</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <br/>
+  <button mat-raised-button="" color="primary" (click)="addMark(currentUser, currentCourse)">Add Mark</button>
+</div>
