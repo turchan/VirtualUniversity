@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface UserRepository extends JpaRepository<User, Long> {
-	User findByLogin(String login);
-	List<User> findBySurname(String surname);
+public interface UserRepository<T extends User> extends JpaRepository<T, Long> {
+	T findByLogin(String login);
+	List<T> findBySurname(String surname);
 }

@@ -4,7 +4,6 @@ import { Router }              from '@angular/router';
 import { UserService }         from '../../../services/user.service';
 import { CourseService }       from '../../../services/course.service';
 import { Course }              from '../../../model/course';
-import { TokenStorageService } from '../../../auth/token-storage.service';
 
 @Component({
   selector: 'app-add-user-course',
@@ -19,16 +18,9 @@ export class AddUserCourseComponent implements OnInit {
 
   constructor(private router: Router,
               private userService: UserService,
-              private courseService: CourseService,
-              private token: TokenStorageService) {}
+              private courseService: CourseService) {}
 
   ngOnInit() {
-
-    this.info = {
-      token: this.token.getToken(),
-      authorities: this.token.getAuthorities()
-    };
-
     this.userService.getUsers().subscribe(data => (this.users = data));
   }
 

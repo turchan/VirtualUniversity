@@ -53,7 +53,7 @@ export class EditUserComponent implements OnInit {
     this.service.updateUser(this.editForm.value)
       .pipe(first())
       .subscribe(data => {
-        this.router.navigate(['list-user']);
+        this.router.navigate(['show-user']);
         },
         error => {
           alert(error);

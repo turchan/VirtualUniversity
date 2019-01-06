@@ -1,6 +1,7 @@
 package com.turchanovskyi.virtual_university.controllers;
 
 import com.turchanovskyi.virtual_university.interfaces.UserService;
+import com.turchanovskyi.virtual_university.model.Course;
 import com.turchanovskyi.virtual_university.model.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -13,11 +14,11 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RestController
 @RequestMapping("/user")
-public class UserController
-{
-	private final UserService userService;
+public class UserController {
 
-	public UserController(UserService userService) {
+	private final UserService<User> userService;
+
+	public UserController(UserService<User> userService) {
 		this.userService = userService;
 	}
 
@@ -49,6 +50,8 @@ public class UserController
 		}
 
 		return userList;
+
+		//return userService.findBySurname(surname);
 	}
 
 	@ResponseStatus(HttpStatus.CREATED)

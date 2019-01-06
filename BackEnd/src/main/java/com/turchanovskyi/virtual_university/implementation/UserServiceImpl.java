@@ -16,9 +16,9 @@ import java.util.List;
 @Service("userService")
 public class UserServiceImpl implements UserService {
 
-	private final UserRepository userRepository;
+	private final UserRepository<User> userRepository;
 
-	public UserServiceImpl(UserRepository userRepository) {
+	public UserServiceImpl(UserRepository<User> userRepository) {
 		this.userRepository = userRepository;
 	}
 

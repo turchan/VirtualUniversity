@@ -21,8 +21,8 @@ export class ListCourseComponent implements OnInit {
 
   showCourse(course: Course): void
   {
-    localStorage.removeItem('showCourseId');
-    localStorage.setItem('showCourseId', course.course_id.toString());
+    localStorage.removeItem('courseId');
+    localStorage.setItem('courseId', course.course_id.toString());
     this.router.navigate(["show-course"]);
   }
 

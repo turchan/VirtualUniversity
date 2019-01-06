@@ -4,11 +4,11 @@ import com.turchanovskyi.virtual_university.model.Course;
 
 import java.util.List;
 
-public interface CourseService {
+public interface CourseService<T extends Course> {
 
-	Iterable<Course> findAll();
-	Course findById(Long id);
-	List<Course> findByTitle(String title);
-	Course save(Course course);
+	Iterable<T> findAll();
+	T findById(Long id);
+	List<T> findByTitle(String title);
+	T save(T course);
 	void deleteById(Long id);
 }

@@ -30,7 +30,7 @@ public class MaterialController {
 	private final StorageService storageService;
 	private final FileRepository fileRepository;
 
-	public MaterialController(MaterialService materialService, CourseService courseService, StorageService storageService, FileRepository fileRepository) {
+	public MaterialController(MaterialService materialService, CourseService<Course> courseService, StorageService storageService, FileRepository fileRepository) {
 		this.materialService = materialService;
 		this.courseService = courseService;
 		this.storageService = storageService;
@@ -60,7 +60,7 @@ public class MaterialController {
 		try
 		{
 			material.setMaterial_id(null);
-			Course course = courseService.findById(courseId);
+			Course course = (Course) courseService.findById(courseId);
 			material.setCourse(course);
 			course.getMaterialList().add(material);
 

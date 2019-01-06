@@ -7,12 +7,12 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import java.util.List;
 
-public interface UserService {
+public interface UserService<T extends User> {
 
-	Iterable<User> findAll();
-	User findById(Long id);
-	List<User> findBySurname(String surname);
-	User findByLogin(String login);
-	User save(User user);
+	Iterable<T> findAll();
+	T findById(Long id);
+	List<T> findBySurname(String surname);
+	T findByLogin(String login);
+	T save(User user);
 	void deleteById(Long id);
 }
