@@ -1,0 +1,22 @@
+<div class="container">
+  <div *ngIf="info.authorities == 'ROLE_PROFESSOR'">
+    <h1>Your courses</h1>
+      <table>
+        <thead>
+        <tr>
+          <td>Title</td>
+          <td>Delete</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let course of courses">
+          <td *ngIf="info.login == course.creator" (click)="showCourse(course)">{{course.title}}</td>
+          <td *ngIf="info.login == course.creator">
+            <button mat-raised-button="" color="warn" (click)="deleteCourse(course)">Delete</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    <button mat-raised-button="" color="primary" routerLink="/create-course" style="margin: 5px">Create Course</button>
+  </div>
+</div>

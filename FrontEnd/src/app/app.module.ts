@@ -23,10 +23,22 @@ import { ListCourseComponent }      from './components/course/list-course/list-c
 import { ShowCourseComponent } from './components/course/show-course/show-course.component';
 import { EditCourseComponent }       from './components/course/edit-course/edit-course.component';
 import { CreateCourseComponent }     from './components/course/create-course/create-course.component';
-import { AddUserCourseComponent }    from './components/course/add-user-course/add-user-course.component';
-import { AddMarksCourseComponent }   from './components/course/add-marks-course/add-marks-course.component';
-import { ShowMarksCourseComponent }  from './components/course/show-marks-course/show-marks-course.component';
-import { UpdateMarkCourseComponent } from './components/course/update-mark-course/update-mark-course.component';
+import { AddUserCourseComponent }   from './components/course/add-user-course/add-user-course.component';
+import { AddMarksCourseComponent }  from './components/course/add-marks-course/add-marks-course.component';
+import { ShowMarksCourseComponent } from './components/course/show-marks-course/show-marks-course.component';
+import { FormUploadComponent }      from './upload/form-upload/form-upload.component';
+import { ListUploadComponent }      from './upload/list-upload/list-upload.component';
+import { DetailsUploadComponent }          from './upload/details-upload/details-upload.component';
+import { AddMaterialComponent }            from './components/course/add-material/add-material.component';
+import { UploadFileService }               from './services/upload-file.service';
+import { ShowProfessorsCoursesComponent }  from './components/user/show-professors-courses/show-professors-courses.component';
+import { ShowParticipantsCourseComponent } from './components/course/show-participants-course/show-participants-course.component';
+import { ShowUsersCoursesComponent }       from './components/user/show-users-courses/show-users-courses.component';
+import { ShowUsersMarksComponent }         from './components/course/show-users-marks/show-users-marks.component';
+import { SearchUserComponent }             from './components/user/search-user/search-user.component';
+import { SearchCourseComponent } from './components/course/search-course/search-course.component';
+
+
 
 @NgModule({
   declarations: [
@@ -47,7 +59,16 @@ import { UpdateMarkCourseComponent } from './components/course/update-mark-cours
     AddUserCourseComponent,
     AddMarksCourseComponent,
     ShowMarksCourseComponent,
-    UpdateMarkCourseComponent
+    FormUploadComponent,
+    ListUploadComponent,
+    DetailsUploadComponent,
+    AddMaterialComponent,
+    ShowProfessorsCoursesComponent,
+    ShowParticipantsCourseComponent,
+    ShowUsersCoursesComponent,
+    ShowUsersMarksComponent,
+    SearchUserComponent,
+    SearchCourseComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +86,10 @@ import { UpdateMarkCourseComponent } from './components/course/update-mark-cours
     MatIconModule,
     MatListModule
   ],
-  providers: [httpInterceptorProviders],
+  providers: [
+    httpInterceptorProviders,
+    UploadFileService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

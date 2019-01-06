@@ -18,7 +18,7 @@ export class AddMarksCourseComponent implements OnInit {
   addForm: FormGroup;
   currentCourse: Course;
   currentUser: User;
-  marks: ['2', '2.5', '3', '3.5', '4','4.5', '5'];
+  marks: ['2', '2.5', '3', '3.5', '4', '4.5', '5'];
 
   constructor(private courseService: CourseService,
               private userService: UserService,

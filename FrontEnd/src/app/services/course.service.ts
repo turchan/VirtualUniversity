@@ -3,7 +3,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable }              from 'rxjs';
 import { Course }                  from '../model/course';
 import { map }                     from 'rxjs/operators';
-import { User }                    from '../model/user';
 
 @Injectable ({
   providedIn: 'root'
@@ -25,6 +24,11 @@ export class CourseService {
   getCourse(id: number): Observable<Course>
   {
     return this.http.get<Course>(`${this.baseUrl}/${id}`);
+  }
+
+  searchCourse(title: string): Observable<any>
+  {
+    return this.http.get(`${this.baseUrl}/search/${title}`);
   }
 
   createCourse(course: Course): Observable<Course>

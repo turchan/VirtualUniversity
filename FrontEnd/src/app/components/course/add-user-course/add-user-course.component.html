@@ -1,6 +1,16 @@
 <div class="container">
+  <button mat-raised-button="" color="primary" routerLink="/search-user" style="margin-top: 60px; margin-left: 35%; margin-bottom: 5px">
+    Search User</button>
   <h1>List of users</h1>
   <table>
+    <thead>
+      <tr>
+        <td>Login</td>
+        <td>Name</td>
+        <td>Surname</td>
+        <td>Email</td>
+      </tr>
+    </thead>
     <tbody>
     <tr *ngFor="let user of users">
       <td>{{user.login}}</td>

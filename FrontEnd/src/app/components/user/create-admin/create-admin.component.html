@@ -1,55 +1,49 @@
-<div *ngIf="isSignedUp; else signupForm">
-  Your registration is successful. Please login!
-</div>
-
-<ng-template #signupForm>
-  <div class="container">
-    <h2>Creating Admin</h2>
-    <form [formGroup]="createForm" (ngSubmit)="onSubmit()" novalidate>
-      <div class="row">
-        <div class="col s12">
-          <div class="row">
-            <div class="input-field col s12">
-              <input formControlName="login" type="text" id="login" placeholder="Login" class="validate" name="login" [(ngModel)]="form.login" required />
-              <label for="login">Login: </label>
-            </div>
-            <div class="input-field col s12">
-              <input formControlName="password" type="password" id="password" placeholder="Password" class="validate" name="password" [(ngModel)]="form.password" required />
-              <label for="password">Password: </label>
-            </div>
-            <div class="input-field col s12">
-              <input formControlName="name" type="text" id="name" placeholder="Name" class="validate" name="name" [(ngModel)]="form.name" required />
-              <label for="name">Name: </label>
-            </div>
-            <div class="input-field col s12">
-              <input formControlName="surname" type="text" id="surname" placeholder="Surname" class="validate" name="surname" [(ngModel)]="form.surname" required />
-              <label for="surname">Surname: </label>
-            </div>
-            <div class="input-field col s12">
-              <input formControlName="country" type="text" id="country" placeholder="Country" class="validate" name="country" [(ngModel)]="form.country" required />
-              <label for="country">Country: </label>
-            </div>
-            <div class="input-field col s12">
-              <input formControlName="email" type="email" id="email" placeholder="Email" class="validate" name="email" [(ngModel)]="form.email" required />
-              <label for="email">Email: </label>
-            </div>
-            <div class="input-field col s12">
-              <input formControlName="city" type="text" id="city" placeholder="City" class="validate" name="city" [(ngModel)]="form.city" required />
-              <label for="city">City: </label>
-            </div>
-            <!-- <div class="input-field col s12">
-			   <mat-select [value]="roles" formControlName="role_id" placeholder="Role" id="role_id" name="role_id">
-				 <mat-option value="['ROLE_ADMIN']">ROLE_ADMIN</mat-option>
-				 <mat-option value="['ROLE_USER']">ROLE_USER</mat-option>
-				 <mat-option value="['ROLE_PROFESSOR']">ROLE_PROFESSOR</mat-option>
-			   </mat-select>
-			 </div> -->
+<div class="container">
+  <h2>Creating Admin</h2>
+  <form [formGroup]="createForm" (ngSubmit)="onSubmit()" novalidate>
+    <div class="row">
+      <div class="col s12">
+        <div class="row">
+          <div class="input-field col s12">
+            <input formControlName="login" type="text" id="login" placeholder="Login" class="validate" name="login" [(ngModel)]="form.login" required />
+            <label for="login">Login: </label>
           </div>
+          <div class="input-field col s12">
+            <input formControlName="password" type="password" id="password" placeholder="Password" class="validate" name="password" [(ngModel)]="form.password" required />
+            <label for="password">Password: </label>
+          </div>
+          <div class="input-field col s12">
+            <input formControlName="name" type="text" id="name" placeholder="Name" class="validate" name="name" [(ngModel)]="form.name" required />
+            <label for="name">Name: </label>
+          </div>
+          <div class="input-field col s12">
+            <input formControlName="surname" type="text" id="surname" placeholder="Surname" class="validate" name="surname" [(ngModel)]="form.surname" required />
+            <label for="surname">Surname: </label>
+          </div>
+          <div class="input-field col s12">
+            <input formControlName="country" type="text" id="country" placeholder="Country" class="validate" name="country" [(ngModel)]="form.country" required />
+            <label for="country">Country: </label>
+          </div>
+          <div class="input-field col s12">
+            <input formControlName="email" type="email" id="email" placeholder="Email" class="validate" name="email" [(ngModel)]="form.email" required />
+            <label for="email">Email: </label>
+          </div>
+          <div class="input-field col s12">
+            <input formControlName="city" type="text" id="city" placeholder="City" class="validate" name="city" [(ngModel)]="form.city" required />
+            <label for="city">City: </label>
+          </div>
+          <!-- <div class="input-field col s12">
+       <mat-select [value]="roles" formControlName="role_id" placeholder="Role" id="role_id" name="role_id">
+       <mat-option value="['ROLE_ADMIN']">ROLE_ADMIN</mat-option>
+       <mat-option value="['ROLE_USER']">ROLE_USER</mat-option>
+       <mat-option value="['ROLE_PROFESSOR']">ROLE_PROFESSOR</mat-option>
+       </mat-select>
+     </div> -->
         </div>
       </div>
+    </div>
 
-      <button>Create</button>
-    </form>
-    <hr />
-  </div>
-</ng-template>
+    <button mat-raised-button="" color="primary" type="submit" style="margin: 5px">Create</button>
+    <button mat-raised-button="" color="accent" style="margin: 5px" routerLink="/list-user">Cancel</button>
+  </form>
+</div>

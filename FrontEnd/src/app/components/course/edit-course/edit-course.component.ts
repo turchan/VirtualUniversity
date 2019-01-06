@@ -48,7 +48,7 @@ export class EditCourseComponent implements OnInit {
     this.service.updateCourse(this.editForm.value)
       .pipe(first())
       .subscribe(data => {
-        this.router.navigate(['list-course']);
+        this.router.navigate(['show-course']);
       },
         error1 => {
         alert(error1)

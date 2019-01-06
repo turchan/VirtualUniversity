@@ -5,7 +5,7 @@ import { map }                             from 'rxjs/operators';
 import { TokenStorageService }             from '../auth/token-storage.service';
 import { Router }                          from '@angular/router';
 import { User }                            from '../model/user';
-import { UserService }                     from '../services/user.service';
+import { UserService }                     from '../services/user.service'
 
 @Component({
   selector: 'app-main-nav',
@@ -21,6 +21,7 @@ export class MainNavComponent implements OnInit {
 
   info: any;
   users: User[];
+  currentUrl: string;
 
   constructor(private breakpointObserver: BreakpointObserver,
               private token: TokenStorageService,
@@ -37,11 +38,18 @@ export class MainNavComponent implements OnInit {
     this.service.getUsers().subscribe(data => (this.users = data));
   }
 
+  showUsersCourses(user: User): void
+  {
+    localStorage.removeItem('userId');
+    localStorage.setItem("userId", user.user_id.toString());
+    this.router.navigate(['show-users-courses']);
+  }
+
   showUser(user: User): void
   {
-    localStorage.removeItem("showUserId");
-    localStorage.setItem("showUserId", user.user_id.toString());
-    this.router.navigate(['show-user'])
+    localStorage.removeItem("userId");
+    localStorage.setItem("userId", user.user_id.toString());
+    this.router.navigate(['show-user']);
   }
 
   logout() {

@@ -1,0 +1,16 @@
+<div class="container">
+  <button mat-raised-button="" color="primary" *ngIf="showFile" (click)="showFiles(false)">Hide Files</button>
+
+  <button mat-raised-button="" color="accent" *ngIf="!showFile" (click)="showFiles(true)">Show Files</button>
+
+  <div [hidden]="!showFile">
+    <div class="card-panel">
+      <div>List Of files</div>
+      <div *ngFor="let file of fileUploads | async">
+        <div class="card-panel">
+          <details-upload [fileUpload]='file'></details-upload>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

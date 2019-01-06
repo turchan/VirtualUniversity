@@ -4,31 +4,26 @@
     <mat-list-item role="listitem">Title: {{currentCourse.title}}</mat-list-item>
     <mat-list-item role="listitem">Professor: {{currentCourse.professor}}</mat-list-item>
   </mat-list>
+  <p style="margin-left: 15px"><strong>Description:</strong> {{currentCourse.description}}</p>
   <br/>
 
   <div *ngIf="info.login == currentCourse.creator">
     <button mat-raised-button="" color="primary" (click)="editCourse(currentCourse)" style="margin-left: 17px">Edit</button>
   </div>
 
-  <div *ngIf="info.authorities == 'ROLE_PROFESSOR' || info.authorities == 'ROLE_ADMIN'; else roleUser">
-    <h1>List of Users</h1>
+  <div>
     <table>
       <tbody>
-      <tr *ngFor="let user of currentCourse.userList">
-        <td>{{user.login}}</td>
-        <td>{{user.name}}</td>
-        <td>{{user.surname}}</td>
-        <td>{{user.email}}</td>
-        <td>
-          <button mat-raised-button="" color="primary" (click)="showMarks(currentCourse, user)">Marks</button>
-        </td>
-        <td>
-          <button mat-raised-button="" color="warn" (click)="deleteUser(user)">Delete</button>
-        </td>
-      </tr>
+        <tr *ngFor="let material of currentCourse.materialList">
+          <td>{{material.title}}</td>
+          <td>{{material.description}}</td>
+        </tr>
       </tbody>
     </table>
-    <button mat-raised-button="" color="primary" (click)="addUser(currentCourse)">Add User</button><br/>
+  </div>
+
+  <div *ngIf="info.login == currentCourse.creator">
+    <button mat-raised-button="" color="primary" (click)="addMaterial(currentCourse)" style="margin-left: 17px; margin-top: 5px">Add Material</button>
   </div>
 
   <ng-template #roleUser>

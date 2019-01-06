@@ -9,12 +9,18 @@ import { CreateAdminComponent }     from './components/user/create-admin/create-
 import { CreateProfessorComponent } from './components/user/create-professor/create-professor.component';
 import { ListCourseComponent }     from './components/course/list-course/list-course.component';
 import { ShowCourseComponent }      from './components/course/show-course/show-course.component';
-import { EditCourseComponent }       from './components/course/edit-course/edit-course.component';
-import { CreateCourseComponent }     from './components/course/create-course/create-course.component';
-import { AddUserCourseComponent }    from './components/course/add-user-course/add-user-course.component';
-import { AddMarksCourseComponent }   from './components/course/add-marks-course/add-marks-course.component';
-import { ShowMarksCourseComponent }  from './components/course/show-marks-course/show-marks-course.component';
-import { UpdateMarkCourseComponent } from './components/course/update-mark-course/update-mark-course.component';
+import { EditCourseComponent }      from './components/course/edit-course/edit-course.component';
+import { CreateCourseComponent }          from './components/course/create-course/create-course.component';
+import { AddUserCourseComponent }          from './components/course/add-user-course/add-user-course.component';
+import { AddMarksCourseComponent }         from './components/course/add-marks-course/add-marks-course.component';
+import { ShowMarksCourseComponent }        from './components/course/show-marks-course/show-marks-course.component';
+import { AddMaterialComponent }            from './components/course/add-material/add-material.component';
+import { ShowProfessorsCoursesComponent }  from './components/user/show-professors-courses/show-professors-courses.component';
+import { ShowParticipantsCourseComponent } from './components/course/show-participants-course/show-participants-course.component';
+import { ShowUsersCoursesComponent }       from './components/user/show-users-courses/show-users-courses.component';
+import { ShowUsersMarksComponent }         from './components/course/show-users-marks/show-users-marks.component';
+import { SearchUserComponent }             from './components/user/search-user/search-user.component';
+import { SearchCourseComponent }           from './components/course/search-course/search-course.component';
 
 export const ROUTES: Routes = [
   { path: 'login', component: LoginComponent },
@@ -32,7 +38,13 @@ export const ROUTES: Routes = [
   { path: 'addUser-course', component: AddUserCourseComponent},
   { path: 'addMark-course', component: AddMarksCourseComponent},
   { path: 'showMark-course', component: ShowMarksCourseComponent},
-  { path: 'updateMark-course', component: UpdateMarkCourseComponent},
+  { path: 'addMaterial-course', component: AddMaterialComponent},
+  { path: 'show-professors-courses', component: ShowProfessorsCoursesComponent},
+  { path: 'show-participants-course', component: ShowParticipantsCourseComponent},
+  { path: 'show-users-courses', component: ShowUsersCoursesComponent },
+  { path: 'show-users-marks', component: ShowUsersMarksComponent },
+  { path: 'search-user', component: SearchUserComponent },
+  { path: 'search-course', component: SearchCourseComponent },
   { path: '', pathMatch: 'full', redirectTo: 'main' },
   { path: '**', pathMatch: 'full', redirectTo: 'main' }
 ];

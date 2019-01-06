@@ -8,9 +8,14 @@
     [opened]="!(isHandset$ | async)">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list *ngIf="info.token; else takelogin">
-      <a mat-list-item routerLink="/list-user">Users</a>
-      <a mat-list-item routerLink="/list-course">All Courses</a>
-      <a mat-list-item href="#">Link 3</a>
+      <a *ngIf="info.role == 'ROLE_ADMIN'" mat-list-item routerLink="/list-user">Users</a>
+      <a mat-list-item routerLink="/list-course">Courses</a>
+      <a *ngIf="info.role == 'ROLE_PROFESSOR'"  mat-list-item routerLink="/show-professors-courses">Your Courses</a>
+      <a *ngIf="info.role == 'ROLE_PROFESSOR' && (router.url == '/show-course' || router.url == '/show-participants-course')" mat-list-item
+         routerLink="/show-participants-course">Participants</a>
+      <a *ngIf="info.role == 'ROLE_USER'" mat-list-item routerLink="/show-users-courses">Your Courses</a>
+      <a *ngIf="info.role == 'ROLE_USER' && (router.url == '/show-course' || router.url == '/show-users-marks')"
+         mat-list-item routerLink="/show-users-marks">Your marks</a>
     </mat-nav-list>
 
     <ng-template #takelogin>

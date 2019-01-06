@@ -28,6 +28,7 @@ public class Course implements Serializable {
 	@Column(name = "description")
 	private String description;
 
+	@JsonIgnoreProperties("course")
 	@OneToMany(mappedBy = "course", fetch = FetchType.LAZY)
 	private List<Material> materialList = new ArrayList<>();
 

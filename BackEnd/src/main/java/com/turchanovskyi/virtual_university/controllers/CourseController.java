@@ -8,6 +8,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 @CrossOrigin(origins = {"http://localhost:4200"})
 @RestController
 @RequestMapping("/course")
@@ -33,6 +37,24 @@ public class CourseController {
 	public Course getCourse(@PathVariable Long courseId)
 	{
 		return courseService.findById(courseId);
+	}
+
+	@GetMapping("/search/{title}")
+	public List<Course> searchCourse(@PathVariable String title)
+	{
+		List<Course> courseList = new ArrayList<>();
+
+		List<Course> findCourse = courseService.findByTitle(title);
+		Iterator<Course> iter = findCourse.iterator();
+
+		while (iter.hasNext())
+		{
+			courseList.add(iter.next());
+		}
+
+		return courseList;
+
+		//return courseService.findByTitle(title);
 	}
 
 	@PostMapping("/create")

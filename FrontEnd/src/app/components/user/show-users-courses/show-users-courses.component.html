@@ -1,0 +1,19 @@
+<div class="container">
+  <div *ngIf="info.authorities == 'ROLE_USER'">
+    <h1>{{currentUser.login}} Courses</h1>
+    <table>
+      <thead>
+        <tr>
+          <td>Title</td>
+          <td>Professor</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let course of currentUser.coursesList" (click)="showCourse(course)">
+          <td>{{course.title}}</td>
+          <td>{{course.creator}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,7 +1,6 @@
 import { Component, OnInit }   from '@angular/core';
 import { TokenStorageService } from '../../auth/token-storage.service';
 import { Router }              from '@angular/router';
-import { User }                from '../../model/user';
 
 @Component({
   selector: "app-main",

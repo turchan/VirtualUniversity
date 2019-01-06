@@ -2,7 +2,6 @@ import { Component, OnInit }                  from '@angular/core';
 import { User }                               from '../../../model/user';
 import { UserService }                        from '../../../services/user.service';
 import { Router }                             from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TokenStorageService }                from '../../../auth/token-storage.service';
 import { Course }                             from '../../../model/course';
 import { CourseService }                      from '../../../services/course.service';
@@ -33,7 +32,7 @@ export class ShowUserComponent implements OnInit {
       authorities: this.token.getAuthorities()
     };
 
-    const userShowId = localStorage.getItem("showUserId");
+    const userShowId = localStorage.getItem("userId");
 
     if (!userShowId)
     {
@@ -42,8 +41,8 @@ export class ShowUserComponent implements OnInit {
       return;
     }
 
-    this.service.getUser(+userShowId).subscribe(data => (this.currentUser = data)
-    );
+    this.service.getUser(+userShowId).subscribe(data => (this.currentUser = data));
+    console.log(this.currentUser.name);
   }
 
   editUser(user: User): void
@@ -51,19 +50,5 @@ export class ShowUserComponent implements OnInit {
     localStorage.removeItem('editUserId');
     localStorage.setItem('editUserId', user.user_id.toString());
     this.router.navigate(['edit-user'])
-  }
-
-  showCourse(course: Course): void
-  {
-    localStorage.removeItem('showCourseId');
-    localStorage.setItem('showCourseId', course.course_id.toString());
-    this.router.navigate(['show-course']);
-  }
-
-  deleteCourse(course: Course): void
-  {
-    this.courseService.deleteCourse(course.course_id).subscribe(data => {
-      this.courses = this.courses.filter( c => c !== course);
-    });
   }
 }

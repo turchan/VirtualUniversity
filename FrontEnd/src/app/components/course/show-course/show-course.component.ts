@@ -1,10 +1,10 @@
 import { Component, OnInit }   from '@angular/core';
-import { Course }              from '../../../model/course';
-import { Router }              from '@angular/router';
-import { CourseService }       from '../../../services/course.service';
-import { TokenStorageService } from '../../../auth/token-storage.service';
-import { User }                from '../../../model/user';
-import { UserService }         from '../../../services/user.service';
+import { Course }                      from '../../../model/course';
+import { Router }                      from '@angular/router';
+import { CourseService }               from '../../../services/course.service';
+import { TokenStorageService }         from '../../../auth/token-storage.service';
+import { User }                        from '../../../model/user';
+import { UserService }                 from '../../../services/user.service';
 
 @Component({
   selector: 'app-show-course',
@@ -14,7 +14,6 @@ import { UserService }         from '../../../services/user.service';
 export class ShowCourseComponent implements OnInit {
 
   currentCourse: Course;
-  currentUser: User;
   info: any;
 
   constructor(private router: Router,
@@ -29,7 +28,7 @@ export class ShowCourseComponent implements OnInit {
       authorities: this.token.getAuthorities()
     };
 
-    const courseId = localStorage.getItem('showCourseId');
+    const courseId = localStorage.getItem('courseId');
 
     if (!courseId)
     {
@@ -48,26 +47,10 @@ export class ShowCourseComponent implements OnInit {
     this.router.navigate(["edit-course"]);
   }
 
-  addUser(course: Course): void
+  addMaterial(course: Course): void
   {
     localStorage.removeItem('courseId');
     localStorage.setItem('courseId', course.course_id.toString());
-    this.router.navigate(['addUser-course']);
-  }
-
-  showMarks(course: Course, user: User): void
-  {
-    localStorage.removeItem('courseId');
-    localStorage.removeItem('userId');
-    localStorage.setItem('courseId', course.course_id.toString());
-    localStorage.setItem('userId', user.user_id.toString());
-    this.router.navigate(["showMark-course"]);
-  }
-
-  deleteUser(user: User): void
-  {
-    this.courseService.deleteUser(this.currentCourse.course_id, user.user_id).subscribe(data => {
-      this.currentCourse.userList = this.currentCourse.userList.filter(value => value !== user);
-    })
+    this.router.navigate(["addMaterial-course"])
   }
 }

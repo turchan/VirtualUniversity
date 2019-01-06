@@ -49,7 +49,7 @@ export class CreateCourseComponent implements OnInit {
     this.service.createCourse(this.createForm.value)
       .pipe(first())
       .subscribe(data => {
-        this.router.navigate(['show-user'])
+        this.router.navigate(['show-professors-courses'])
       },
         error1 => {
         alert(error1);

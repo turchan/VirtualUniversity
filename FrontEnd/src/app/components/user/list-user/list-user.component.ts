@@ -2,7 +2,6 @@ import { Component, OnInit }   from '@angular/core';
 import { User }                from '../../../model/user';
 import { Router }              from '@angular/router';
 import { UserService }         from '../../../services/user.service';
-import { TokenStorageService } from '../../../auth/token-storage.service';
 
 @Component({
   selector: 'app-list-user',
