@@ -4,8 +4,14 @@
     <mat-list-item role="listitem">Title: {{currentCourse.title}}</mat-list-item>
     <mat-list-item role="listitem">Professor: {{currentCourse.professor}}</mat-list-item>
   </mat-list>
-  <p style="margin-left: 15px"><strong>Description:</strong> {{currentCourse.description}}</p>
+  <p *ngIf="currentCourse.description !== ''" style="margin-left: 15px"><strong>Description:</strong> {{currentCourse.description}}</p>
   <br/>
+
+  <!--<div *ngIf="info.authorities == 'ROLE_USER'">
+    <div *ngFor="let user of users">
+        <button *ngIf="info.login == user.login" mat-raised-button="" color="primary" (click)="addUser(user)" routerLink="/show-users-courses">Subscribe</button>
+    </div>
+  </div> -->
 
   <div *ngIf="info.login == currentCourse.creator">
     <button mat-raised-button="" color="primary" (click)="editCourse(currentCourse)" style="margin-left: 17px">Edit</button>

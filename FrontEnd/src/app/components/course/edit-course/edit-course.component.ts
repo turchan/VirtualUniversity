@@ -14,6 +14,7 @@ export class EditCourseComponent implements OnInit {
 
   course: Course;
   editForm: FormGroup;
+  submitted = false;
 
   constructor(private router: Router,
               private formBuilder: FormBuilder,
@@ -32,7 +33,7 @@ export class EditCourseComponent implements OnInit {
     this.editForm = this.formBuilder.group( {
       course_id: [],
       title: ['', Validators.required],
-      password: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(6)]],
       professor: ['', Validators.required],
       description: [''],
       creator: [],
@@ -43,16 +44,26 @@ export class EditCourseComponent implements OnInit {
     this.service.getCourse(+courseId).subscribe(data => (this.editForm.setValue(data)));
   }
 
+  get f() {
+    return this.editForm.controls;
+  }
+
   onSubmit()
   {
+    this.submitted = true;
+
+    if (this.editForm.invalid)
+    {
+      return;
+    }
+
     this.service.updateCourse(this.editForm.value)
       .pipe(first())
       .subscribe(data => {
-        this.router.navigate(['show-course']);
-      },
+          this.router.navigate(['show-course']);
+        },
         error1 => {
-        alert(error1)
-      });
+          alert(error1)
+        });
   }
-
 }

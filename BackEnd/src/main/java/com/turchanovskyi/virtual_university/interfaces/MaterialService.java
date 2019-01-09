@@ -2,10 +2,10 @@ package com.turchanovskyi.virtual_university.interfaces;
 
 import com.turchanovskyi.virtual_university.model.Material;
 
-public interface MaterialService {
+public interface MaterialService<T extends Material> {
 
-	Iterable<Material> findAll();
-	Material findById(Long id);
-	Material save(Material material);
+	Iterable<T> findAll();
+	T findById(Long id);
+	T save(T material);
 	void deleteById(Long id);
 }

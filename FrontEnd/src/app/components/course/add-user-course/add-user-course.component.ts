@@ -30,4 +30,11 @@ export class AddUserCourseComponent implements OnInit {
 
     this.courseService.addUser(+courseId, user.user_id).subscribe(data => (this.currentCourse = data));
   }
+
+  showUser(user: User): void
+  {
+    localStorage.removeItem("userId");
+    localStorage.setItem("userId", user.user_id.toString());
+    this.router.navigate(['show-user']);
+  }
 }

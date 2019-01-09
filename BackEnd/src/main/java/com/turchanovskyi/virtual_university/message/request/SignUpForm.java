@@ -1,19 +1,29 @@
 package com.turchanovskyi.virtual_university.message.request;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.util.Set;
 
 public class SignUpForm {
 
+	@NotEmpty(message = "Login should be entered")
 	private String login;
 
+	@NotEmpty(message = "Password should be entered")
+	@Size(min = 6, message = "Password should have at least 6 characters")
 	private String password;
 
+	@NotEmpty(message = "Login should be entered")
 	private String name;
 
+	@NotEmpty(message = "Login should be entered")
 	private String surname;
 
 	private String country;
 
+	@NotEmpty(message = "Login should be entered")
+	@Email
 	private String email;
 
 	private String city;

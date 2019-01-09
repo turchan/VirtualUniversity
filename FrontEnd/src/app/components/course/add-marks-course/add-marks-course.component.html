@@ -3,36 +3,44 @@
 
     <table>
       <thead>
-        <tr>
-          <td>Name</td>
-          <td>Surname</td>
-          <td><label for="title">Title</label></td>
-          <td><label for="mark">Mark</label></td>
-          <td hidden><label for="title">Title</label></td>
-          <td hidden><label for="course_id">Course</label></td>
-          <td hidden><label for="user_id">User</label></td>
-        </tr>
+      <tr>
+        <td>Name</td>
+        <td>Surname</td>
+        <td><label for="title">Title</label></td>
+        <td><label for="mark">Mark</label></td>
+        <td hidden><label for="title">Title</label></td>
+        <td hidden><label for="course_id">Course</label></td>
+        <td hidden><label for="user_id">User</label></td>
+      </tr>
       </thead>
       <tbody>
-        <tr>
-          <td id="name">
-            {{currentUser.name}}
-          </td>
-          <td id="surname">
-              {{currentUser.surname}}
-          </td>
-          <td>
-            <input formControlName="title" name="title" id="title" class="input-field"/>
-          </td>
-          <td>
-            <input formControlName="mark" name="mark" id="mark" class="input-field"/>
-            <input hidden formControlName="course_id" name="course_id" id="course_id" class="input-field" [(ngModel)]="currentCourse.course_id"/>
-            <input hidden formControlName="user_id" name="user_id" id="user_id" class="input-field" [(ngModel)]="currentUser.user_id"/>
-            <!--<select formControlName="mark" id="mark" name="mark">
-              <option *ngFor="let mark of marks" [ngValue]="mark">{{mark}}</option>
-            </select> -->
-          </td>
-        </tr>
+      <tr>
+        <td id="name">
+          {{currentUser.name}}
+        </td>
+        <td id="surname">
+          {{currentUser.surname}}
+        </td>
+        <td>
+          <input formControlName="title" name="title" id="title" [ngClass]="{'is-invalid': submitted && f.title.errors}"/>
+          <div *ngIf="submitted && f.title.errors">
+            <div *ngIf="f.title.errors.required" style="color: red;">Title should be entered</div>
+          </div>
+        </td>
+        <td>
+          <input formControlName="mark" name="mark" id="mark" [ngClass]="{'is-invalid': submitted && f.mark.errors}"/>
+          <div *ngIf="submitted && f.mark.errors">
+            <div *ngIf="f.mark.errors.required" style="color: red;">Mark should be entered</div>
+            <div *ngIf="f.mark.errors.min" style="color: red;">Mark should be bigger than 2</div>
+            <div *ngIf="f.mark.errors.max" style="color: red;">Mark should be 5 or smaller</div>
+          </div>
+          <input hidden formControlName="course_id" name="course_id" id="course_id" class="input-field" [(ngModel)]="currentCourse.course_id"/>
+          <input hidden formControlName="user_id" name="user_id" id="user_id" class="input-field" [(ngModel)]="currentUser.user_id"/>
+          <!--<select formControlName="mark" id="mark" name="mark">
+			<option *ngFor="let mark of marks" [ngValue]="mark">{{mark}}</option>
+		  </select> -->
+        </td>
+      </tr>
       </tbody>
     </table>
 

@@ -9,14 +9,15 @@
         <td>Name</td>
         <td>Surname</td>
         <td>Email</td>
+        <td></td>
       </tr>
     </thead>
     <tbody>
     <tr *ngFor="let user of users">
-      <td>{{user.login}}</td>
-      <td>{{user.name}}</td>
-      <td>{{user.surname}}</td>
-      <td>{{user.email}}</td>
+      <td (click)="showUser(user)">{{user.login}}</td>
+      <td (click)="showUser(user)">{{user.name}}</td>
+      <td (click)="showUser(user)">{{user.surname}}</td>
+      <td (click)="showUser(user)">{{user.email}}</td>
       <td>
         <button mat-raised-button="" color="primary" (click)="addUser(user)">Add User</button>
       </td>

@@ -3,12 +3,16 @@ package com.turchanovskyi.virtual_university.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "courses")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Course implements Serializable {
 
 	@Id
@@ -16,12 +20,16 @@ public class Course implements Serializable {
 	@Column(name = "course_id")
 	private Long course_id;
 
+	@NotEmpty(message = "Title should be entered")
 	@Column(name = "title")
 	private String title;
 
+	@NotNull(message = "Password cannot be empty")
+	@Size(min = 6, message = "Password should have at least 2 characters")
 	@Column(name = "password")
 	private String password;
 
+	@NotEmpty(message = "Professor cannot be empty")
 	@Column(name = "professor")
 	private String professor;
 
@@ -32,6 +40,7 @@ public class Course implements Serializable {
 	@OneToMany(mappedBy = "course", fetch = FetchType.LAZY)
 	private List<Material> materialList = new ArrayList<>();
 
+	@NotEmpty(message = "Creator cannot be empty")
 	@Column(name = "creator")
 	private String creator;
 

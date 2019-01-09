@@ -80,7 +80,7 @@ public class CourseController {
 	}
 
 	@GetMapping("/{courseId}/addUser/{userId}")
-	@PreAuthorize("hasRole('ROLE_PROFESSOR')")
+	@PreAuthorize("hasRole('ROLE_PROFESSOR') or hasRole('ROLE_USER')")
 	public void addUser(@PathVariable Long courseId, @PathVariable Long userId)
 	{
 		Course course = courseService.findById(courseId);

@@ -1,0 +1,41 @@
+<div class="container">
+  <h3>Searching users</h3>
+  <div>
+    <form (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col s12">
+          <div class="row">
+            <div class="input-field col s12">
+              <input type="text" id="surname" placeholder="Please, enter surname of user for search"
+                     class="validate" name="surname" [(ngModel)]="surname"/>
+              <label for="surname">Search: </label>
+            </div>
+          </div>
+          <button mat-raised-button="" color="primary" type="submit" style="margin: 5px">Search</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div *ngIf="users.toString() !== ''">
+    <table>
+      <thead>
+      <tr>
+        <td>Login</td>
+        <td>Name</td>
+        <td>Surname</td>
+        <td>Email</td>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let user of users">
+        <td (click)="showUser(user)">{{user.login}}</td>
+        <td (click)="showUser(user)">{{user.name}}</td>
+        <td (click)="showUser(user)">{{user.surname}}</td>
+        <td (click)="showUser(user)">{{user.email}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

@@ -17,10 +17,11 @@ import { ShowMarksCourseComponent }        from './components/course/show-marks-
 import { AddMaterialComponent }            from './components/course/add-material/add-material.component';
 import { ShowProfessorsCoursesComponent }  from './components/user/show-professors-courses/show-professors-courses.component';
 import { ShowParticipantsCourseComponent } from './components/course/show-participants-course/show-participants-course.component';
-import { ShowUsersCoursesComponent }       from './components/user/show-users-courses/show-users-courses.component';
-import { ShowUsersMarksComponent }         from './components/course/show-users-marks/show-users-marks.component';
-import { SearchUserComponent }             from './components/user/search-user/search-user.component';
-import { SearchCourseComponent }           from './components/course/search-course/search-course.component';
+import { ShowUsersCoursesComponent } from './components/user/show-users-courses/show-users-courses.component';
+import { ShowUsersMarksComponent }   from './components/course/show-users-marks/show-users-marks.component';
+import { SearchUserComponent }       from './components/user/search-user/search-user.component';
+import { SearchCourseComponent }     from './components/course/search-course/search-course.component';
+import { UsersForAdminComponent }    from './components/user/users-for-admin/users-for-admin.component';
 
 export const ROUTES: Routes = [
   { path: 'login', component: LoginComponent },
@@ -45,6 +46,7 @@ export const ROUTES: Routes = [
   { path: 'show-users-marks', component: ShowUsersMarksComponent },
   { path: 'search-user', component: SearchUserComponent },
   { path: 'search-course', component: SearchCourseComponent },
+  { path: 'search-users', component: UsersForAdminComponent },
   { path: '', pathMatch: 'full', redirectTo: 'main' },
   { path: '**', pathMatch: 'full', redirectTo: 'main' }
 ];

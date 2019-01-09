@@ -37,6 +37,7 @@ import { ShowUsersCoursesComponent }       from './components/user/show-users-co
 import { ShowUsersMarksComponent }         from './components/course/show-users-marks/show-users-marks.component';
 import { SearchUserComponent }             from './components/user/search-user/search-user.component';
 import { SearchCourseComponent } from './components/course/search-course/search-course.component';
+import { UsersForAdminComponent } from './components/user/users-for-admin/users-for-admin.component';
 
 
 
@@ -68,7 +69,8 @@ import { SearchCourseComponent } from './components/course/search-course/search-
     ShowUsersCoursesComponent,
     ShowUsersMarksComponent,
     SearchUserComponent,
-    SearchCourseComponent
+    SearchCourseComponent,
+    UsersForAdminComponent
   ],
   imports: [
     BrowserModule,

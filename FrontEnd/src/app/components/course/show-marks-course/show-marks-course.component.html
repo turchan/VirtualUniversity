@@ -3,11 +3,11 @@
   <table>
     <tbody>
     <tr *ngFor="let mark of currentUser.markList">
-      <td>{{currentUser.name}}</td>
-      <td>{{currentUser.surname}}</td>
-      <td>{{mark.title}}</td>
-      <td>{{mark.mark}}</td>
-      <td>
+      <td *ngIf="mark.course.course_id == currentCourse.course_id">{{currentUser.name}}</td>
+      <td *ngIf="mark.course.course_id == currentCourse.course_id">{{currentUser.surname}}</td>
+      <td *ngIf="mark.course.course_id == currentCourse.course_id">{{mark.title}}</td>
+      <td *ngIf="mark.course.course_id == currentCourse.course_id">{{mark.mark}}</td>
+      <td *ngIf="mark.course.course_id == currentCourse.course_id">
         <button mat-raised-button="" color="warn" (click)="deleteMark(mark)">Delete</button>
       </td>
     </tr>

@@ -4,6 +4,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -12,6 +16,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "users")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class User implements Serializable {
 
 	@Id
@@ -19,21 +24,28 @@ public class User implements Serializable {
 	@Column(name = "user_id")
 	private Long user_id;
 
+	@NotEmpty(message = "Login cannot be empty")
 	@Column(name = "login")
 	private String login;
 
+	@NotNull(message = "Password should be entered")
+	@Size(min = 6, message = "Password must have at least 6 characters")
 	@Column(name = "password")
 	private String password;
 
+	@NotEmpty(message = "Name should be entered")
 	@Column(name = "name")
 	private String name;
 
+	@NotEmpty(message = "Surname should be entered")
 	@Column(name = "surname")
 	private String surname;
 
 	@Column(name = "country")
 	private String country;
 
+	@NotEmpty(message = "Email cannot be empty")
+	@Email
 	@Column(name = "email")
 	private String email;
 

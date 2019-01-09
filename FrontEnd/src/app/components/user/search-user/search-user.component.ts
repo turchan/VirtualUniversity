@@ -4,6 +4,7 @@ import { UserService }              from '../../../services/user.service'
 import { Router }                   from '@angular/router';
 import { Course }                   from '../../../model/course';
 import { CourseService }            from '../../../services/course.service';
+import { TokenStorageService }      from '../../../auth/token-storage.service';
 
 @Component({
   selector: 'search-user',
@@ -19,10 +20,17 @@ export class SearchUserComponent implements OnInit {
 
   constructor(private userService: UserService,
               private courseService: CourseService,
-              private router: Router) { }
+              private router: Router,
+              private token: TokenStorageService) { }
 
   ngOnInit() {
     this.surname = null;
+
+    this.info = {
+      token: this.token.getToken(),
+      authorities: this.token.getAuthorities(),
+      login: this.token.getLogin()
+    }
   }
 
   private searchUser()
