@@ -1,6 +1,7 @@
 package com.turchanovskyi.virtual_university.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -14,6 +15,7 @@ public class Material implements Serializable {
 	@Column(name = "material_id")
 	private Long material_id;
 
+	@NotEmpty(message = "Title cannot be empty")
 	@Column(name = "title")
 	private String title;
 

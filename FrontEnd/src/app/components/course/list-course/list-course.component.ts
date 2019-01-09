@@ -1,7 +1,8 @@
-import { Component, OnInit }   from '@angular/core';
-import { Course }              from '../../../model/course';
-import { Router }              from '@angular/router';
-import { CourseService }       from '../../../services/course.service';
+import { Component, OnInit } from '@angular/core';
+import { Course }            from '../../../model/course';
+import { Router }            from '@angular/router';
+import { CourseService }     from '../../../services/course.service';
+import { User }              from '../../../model/user';
 
 @Component({
   selector: 'app-list-course',
@@ -11,6 +12,8 @@ import { CourseService }       from '../../../services/course.service';
 export class ListCourseComponent implements OnInit {
 
   courses: Course[];
+  users: User[];
+  currentCourse: Course;
 
   constructor(private router: Router,
               private service: CourseService) { }
@@ -25,6 +28,4 @@ export class ListCourseComponent implements OnInit {
     localStorage.setItem('courseId', course.course_id.toString());
     this.router.navigate(["show-course"]);
   }
-
-
 }

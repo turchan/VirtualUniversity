@@ -1,28 +1,31 @@
-<div *ngIf="info.authorities == 'ROLE_PROFESSOR' || info.authorities == 'ROLE_ADMIN'; else roleUser">
-  <h1>List of Users</h1>
-  <table>
-    <thead>
-    <tr>
-      <td>Login</td>
-      <td>Name</td>
-      <td>Surname</td>
-      <td>Email</td>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let user of currentCourse.userList">
-      <td>{{user.login}}</td>
-      <td>{{user.name}}</td>
-      <td>{{user.surname}}</td>
-      <td>{{user.email}}</td>
-      <td>
-        <button *ngIf="info.authorities == 'ROLE_PROFESSOR'" mat-raised-button="" color="primary" (click)="showMarks(currentCourse, user)">Marks</button>
-      </td>
-      <td>
-        <button *ngIf="info.authorities == 'ROLE_PROFESSOR'" mat-raised-button="" color="warn" (click)="deleteUser(user)">Delete</button>
-      </td>
-    </tr>
-    </tbody>
-  </table>
+<div class="container">
+  <div *ngIf="info.authorities == 'ROLE_PROFESSOR' || info.authorities == 'ROLE_ADMIN'">
+    <h1>List of Users</h1>
+    <table *ngIf="currentCourse.userList.toString() !== ''">
+      <thead>
+      <tr>
+        <td>Login</td>
+        <td>Name</td>
+        <td>Surname</td>
+        <td>Email</td>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let user of currentCourse.userList">
+        <td (click)="showUser(user)">{{user.login}}</td>
+        <td (click)="showUser(user)">{{user.name}}</td>
+        <td (click)="showUser(user)">{{user.surname}}</td>
+        <td (click)="showUser(user)">{{user.email}}</td>
+        <td>
+          <button *ngIf="info.authorities == 'ROLE_PROFESSOR' && info.login == currentCourse.creator" mat-raised-button="" color="primary" (click)="showMarks(currentCourse, user)">Marks</button>
+        </td>
+        <td>
+          <button *ngIf="info.authorities == 'ROLE_PROFESSOR' && info.login == currentCourse.creator" mat-raised-button="" color="warn" (click)="deleteUser(user)">Delete</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <button *ngIf="info.authorities == 'ROLE_PROFESSOR' && info.login == currentCourse.creator" mat-raised-button="" color="primary" (click)="addUser(currentCourse)" style="margin-left: 40%; margin-top: 10px">Add User</button><br/>
+
 </div>
-<button *ngIf="info.authorities == 'ROLE_PROFESSOR'" mat-raised-button="" color="primary" (click)="addUser(currentCourse)" style="margin-left: 40%; margin-top: 10px">Add User</button><br/>

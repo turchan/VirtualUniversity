@@ -12,9 +12,9 @@ import org.springframework.transaction.annotation.Transactional;
 @Service("markService")
 public class MarkServiceImpl implements MarkService {
 
-	private final MarkRepository markRepository;
+	private final MarkRepository<Mark> markRepository;
 
-	public MarkServiceImpl(MarkRepository markRepository) {
+	public MarkServiceImpl(MarkRepository<Mark> markRepository) {
 		this.markRepository = markRepository;
 	}
 

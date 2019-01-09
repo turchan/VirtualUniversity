@@ -12,9 +12,9 @@ import org.springframework.transaction.annotation.Transactional;
 @Service("materialService")
 public class MaterialServiceImpl implements MaterialService {
 
-	private final MaterialRepository materialRepository;
+	private final MaterialRepository<Material> materialRepository;
 
-	public MaterialServiceImpl(MaterialRepository materialRepository) {
+	public MaterialServiceImpl(MaterialRepository<Material> materialRepository) {
 		this.materialRepository = materialRepository;
 	}
 

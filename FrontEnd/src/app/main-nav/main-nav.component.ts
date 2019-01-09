@@ -38,6 +38,13 @@ export class MainNavComponent implements OnInit {
     this.service.getUsers().subscribe(data => (this.users = data));
   }
 
+  showProfessorCourses(user: User): void
+  {
+    localStorage.removeItem('userId');
+    localStorage.setItem("userId", user.user_id.toString());
+    this.router.navigate(['show-professors-courses']);
+  }
+
   showUsersCourses(user: User): void
   {
     localStorage.removeItem('userId');

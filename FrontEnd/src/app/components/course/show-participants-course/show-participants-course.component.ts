@@ -40,13 +40,6 @@ export class ShowParticipantsCourseComponent implements OnInit {
     this.courseService.getCourse(+courseId).subscribe(data => (this.currentCourse = data));
   }
 
-  editCourse(course: Course): void
-  {
-    localStorage.removeItem('editCourseId');
-    localStorage.setItem('editCourseId', course.course_id.toString());
-    this.router.navigate(["edit-course"]);
-  }
-
   addUser(course: Course): void
   {
     localStorage.removeItem('courseId');
@@ -63,17 +56,18 @@ export class ShowParticipantsCourseComponent implements OnInit {
     this.router.navigate(["showMark-course"]);
   }
 
-  addMaterial(course: Course): void
-  {
-    localStorage.removeItem('courseId');
-    localStorage.setItem('courseId', course.course_id.toString());
-    this.router.navigate(["addMaterial-course"])
-  }
 
   deleteUser(user: User): void
   {
     this.courseService.deleteUser(this.currentCourse.course_id, user.user_id).subscribe(data => {
       this.currentCourse.userList = this.currentCourse.userList.filter(value => value !== user);
     })
+  }
+
+  showUser(user: User): void
+  {
+    localStorage.removeItem("userId");
+    localStorage.setItem("userId", user.user_id.toString());
+    this.router.navigate(['show-user']);
   }
 }

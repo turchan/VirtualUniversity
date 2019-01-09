@@ -6,40 +6,50 @@
       <div class="col s12">
         <div class="row">
           <div class="input-field col s12">
-            <input formControlName="login" type="text" id="login" placeholder="Login" class="validate" name="login" required>
+            <input formControlName="login" type="text" id="login" placeholder="Login" [ngClass]="{'is-invalid': submitted && f.login.errors}" name="login" required>
             <label for="login">Login: </label>
+            <div *ngIf="submitted && f.login.errors">
+              <div *ngIf="f.login.errors.required" style="color: red;">Login should be entered</div>
+            </div>
           </div>
           <div class="input-field col s12">
-            <input formControlName="password" type="password" id="password" placeholder="Password" class="validate" name="password" required>
+            <input formControlName="password" type="password" id="password" placeholder="Password" [ngClass]="{'is-invalid': submitted && f.password.errors}" name="password" required>
             <label for="password">Password: </label>
+            <div *ngIf="submitted && f.password.errors">
+              <div *ngIf="f.password.errors.required" style="color: red">Password should be entered</div>
+              <div *ngIf="f.password.errors.minlength" style="color: red">Password should be at least 6 characters</div>
+            </div>
           </div>
           <div class="input-field col s12">
-            <input formControlName="name" type="text" id="name" placeholder="Name" class="validate" name="name" required>
+            <input formControlName="name" type="text" id="name" placeholder="Name" [ngClass]="{'is-invalid': submitted && f.name.errors}" name="name" required>
             <label for="name">Name: </label>
+            <div *ngIf="submitted && f.name.errors">
+              <div *ngIf="f.name.errors.required" style="color: red">Name should be entered</div>
+            </div>
           </div>
           <div class="input-field col s12">
-            <input formControlName="surname" type="text" id="surname" placeholder="Surname" class="validate" name="surname" required>
+            <input formControlName="surname" type="text" id="surname" [ngClass]="{'is-invalid': submitted && f.surname.errors}" placeholder="Surname" name="surname" required>
             <label for="surname">Surname: </label>
+            <div *ngIf="submitted && f.surname.errors">
+              <div *ngIf="f.surname.errors.required" style="color: red">Surname should be entered</div>
+            </div>
           </div>
           <div class="input-field col s12">
             <input formControlName="country" type="text" id="country" placeholder="Country" class="validate" name="country">
             <label for="country">Country: </label>
           </div>
           <div class="input-field col s12">
-            <input formControlName="email" type="email" id="email" placeholder="Email" class="validate" name="email" required>
+            <input formControlName="email" type="email" id="email" placeholder="Email" [ngClass]="{'is-invalid': submitted && f.email.errors}" name="email" required>
             <label for="email">Email: </label>
+            <div *ngIf="submitted && f.email.errors">
+              <div *ngIf="f.email.errors.required" style="color: red">Email should be entered</div>
+              <div *ngIf="f.email.errors.email" style="color: red">Email should be valid</div>
+            </div>
           </div>
           <div class="input-field col s12">
             <input formControlName="city" type="text" id="city" placeholder="City" class="validate" name="city">
             <label for="city">City: </label>
           </div>
-          <!-- <div class="input-field col s12">
-			   <mat-select [value]="roles" formControlName="role_id" placeholder="Role" id="role_id" name="role_id">
-				 <mat-option value="['ROLE_ADMIN']">ROLE_ADMIN</mat-option>
-				 <mat-option value="['ROLE_USER']">ROLE_USER</mat-option>
-				 <mat-option value="['ROLE_PROFESSOR']">ROLE_PROFESSOR</mat-option>
-			   </mat-select>
-			 </div> -->
         </div>
       </div>
     </div>

@@ -14,6 +14,7 @@ export class CreateCourseComponent implements OnInit {
 
   createForm: FormGroup;
   info: any;
+  submitted = false;
 
   constructor(private service: CourseService,
               private router: Router,
@@ -31,8 +32,8 @@ export class CreateCourseComponent implements OnInit {
     this.createForm = this.formBuilder.group({
         course_id: [],
         title: ['', Validators.required],
-        password: ['', Validators.required],
-        professor: [this.info.login],
+        password: ['', [Validators.required, Validators.minLength(6)]],
+        professor: [this.info.login, Validators.required],
         description: [''],
         materialList: [],
         creator: [this.info.login],
@@ -42,17 +43,28 @@ export class CreateCourseComponent implements OnInit {
     );
   }
 
+  get f() {
+    return this.createForm.controls;
+  }
+
   onSubmit()
   {
+    this.submitted = true;
+
+    if (this.createForm.invalid)
+    {
+      return;
+    }
+
     console.log(this.createForm);
 
     this.service.createCourse(this.createForm.value)
       .pipe(first())
       .subscribe(data => {
-        this.router.navigate(['show-professors-courses'])
-      },
+          this.router.navigate(['show-professors-courses'])
+        },
         error1 => {
-        alert(error1);
+          alert(error1);
         })
   }
 }

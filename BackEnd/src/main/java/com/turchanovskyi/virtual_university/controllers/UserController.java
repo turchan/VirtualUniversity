@@ -23,14 +23,12 @@ public class UserController {
 	}
 
 	@GetMapping
-	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_PROFESSOR') or hasRole('ROLE_ADMIN')")
 	public Iterable<User> main()
 	{
 		return userService.findAll();
 	}
 
 	@GetMapping("/{userId}")
-	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_PROFESSOR') or hasRole('ROLE_ADMIN')")
 	public User getUser(@PathVariable Long userId)
 	{
 		return userService.findById(userId);

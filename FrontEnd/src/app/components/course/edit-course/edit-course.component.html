@@ -6,16 +6,26 @@
       <div class="col s12">
         <div class="row">
           <div class="input-field col s12">
-            <input formControlName="title" type="text" id="title" placeholder="Title" class="validate" name="title" required>
+            <input formControlName="title" type="text" id="title" placeholder="Title" [ngClass]="{'is-invalid': submitted && f.title.errors}" name="title" required>
             <label for="title">Title: </label>
+            <div *ngIf="submitted && f.title.errors">
+              <div *ngIf="f.title.errors.required" style="color: red;">Title should be entered</div>
+            </div>
           </div>
           <div class="input-field col s12">
-            <input formControlName="password" type="password" id="password" placeholder="Password" class="validate" name="password" required>
+            <input formControlName="password" type="password" id="password" placeholder="Password" [ngClass]="{'is-invalid': submitted && f.password.errors}" name="password" required>
             <label for="password">Password: </label>
+            <div *ngIf="submitted && f.password.errors">
+              <div *ngIf="f.password.errors.required" style="color: red">Password should be entered</div>
+              <div *ngIf="f.password.errors.minlength" style="color: red">Password should be at least 6 characters</div>
+            </div>
           </div>
           <div class="input-field col s12">
-            <input formControlName="professor" type="text" id="professor" placeholder="Professor" class="validate" name="professor" required>
+            <input formControlName="professor" type="text" id="professor" placeholder="Professor" [ngClass]="{'is-invalid': submitted && f.professor.errors}" name="professor" required>
             <label for="professor">Professor: </label>
+            <div *ngIf="submitted && f.professor.errors">
+              <div *ngIf="f.professor.errors.required" style="color: red;">Professor should be entered</div>
+            </div>
           </div>
           <div class="input-field col s12">
             <textarea formControlName="description" id="description" placeholder="Description" class="materialize-textarea validate" name="description" required></textarea>

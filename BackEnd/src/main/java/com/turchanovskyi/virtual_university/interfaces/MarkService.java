@@ -2,10 +2,10 @@ package com.turchanovskyi.virtual_university.interfaces;
 
 import com.turchanovskyi.virtual_university.model.Mark;
 
-public interface MarkService {
+public interface MarkService<T extends Mark> {
 
-	Iterable<Mark> findAll();
-	Mark findById(Long id);
-	Mark save(Mark mark);
+	Iterable<T> findAll();
+	T findById(Long id);
+	T save(T mark);
 	void deleteById(Long id);
 }

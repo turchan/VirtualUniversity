@@ -3,10 +3,14 @@ package com.turchanovskyi.virtual_university.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 @Entity
 @Table(name = "marks")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Mark implements Serializable {
 
 	@Id
@@ -14,9 +18,11 @@ public class Mark implements Serializable {
 	@Column(name = "mark_id")
 	private Long mark_id;
 
+	@NotEmpty(message = "Title cannot be empty")
 	@Column(name = "title")
 	private String title;
 
+	@NotNull(message = "Mark should be entered")
 	@Column(name = "mark")
 	private int mark;
 

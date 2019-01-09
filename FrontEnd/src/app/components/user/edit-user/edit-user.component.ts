@@ -14,6 +14,7 @@ export class EditUserComponent implements OnInit {
 
   user: User;
   editForm: FormGroup;
+  submitted = false;
 
   constructor(private formBuilder: FormBuilder,
               private router: Router,
@@ -33,11 +34,11 @@ export class EditUserComponent implements OnInit {
     this.editForm = this.formBuilder.group({
       user_id: [],
       login: ['', Validators.required],
-      password: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(6)]],
       name: ['', Validators.required],
       surname: ['', Validators.required],
-      country: [''],
-      email: ['', Validators.required],
+      country: [],
+      email: ['', [Validators.required, Validators.email]],
       city: [''],
       role_id: [],
       coursesList: []
@@ -48,8 +49,19 @@ export class EditUserComponent implements OnInit {
     });
   }
 
+  get f() {
+    return this.editForm.controls;
+  }
+
   onSubmit()
   {
+    this.submitted = true;
+
+    if (this.editForm.invalid)
+    {
+      return;
+    }
+
     this.service.updateUser(this.editForm.value)
       .pipe(first())
       .subscribe(data => {
