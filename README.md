@@ -1,7 +1,8 @@
 # VirtualUniversity 
 
 Stack of technologies: Spring boot, Angular 6, Materialize.
-PL: Java, JavaScript, TypeScript. 
+Back end: Java;
+Front end: JavaScript, TypeScript, CSS, HTML. 
 
 # General Information:
 
