@@ -3,8 +3,6 @@ package com.turchanovskyi.virtual_university.implementation;
 import com.turchanovskyi.virtual_university.interfaces.UserService;
 import com.turchanovskyi.virtual_university.model.User;
 import com.turchanovskyi.virtual_university.repository.UserRepository;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,7 +12,7 @@ import java.util.List;
 @Repository
 @Transactional
 @Service("userService")
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService<User> {
 
 	private final UserRepository<User> userRepository;
 
@@ -24,7 +22,7 @@ public class UserServiceImpl implements UserService {
 
 	@Transactional(readOnly = true)
 	@Override
-	public Iterable<User> findAll() {
+	public List<User> findAll() {
 		return userRepository.findAll();
 	}
 

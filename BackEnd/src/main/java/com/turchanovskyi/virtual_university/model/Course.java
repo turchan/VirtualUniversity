@@ -55,6 +55,15 @@ public class Course implements Serializable {
 	public Course() {
 	}
 
+	public Course(Long course_id, String title, String password, String professor, String description, String creator) {
+		this.course_id = course_id;
+		this.title = title;
+		this.password = password;
+		this.professor = professor;
+		this.description = description;
+		this.creator = creator;
+	}
+
 	public Course(String title, String password, String professor, String description, String creator) {
 		this.title = title;
 		this.password = password;

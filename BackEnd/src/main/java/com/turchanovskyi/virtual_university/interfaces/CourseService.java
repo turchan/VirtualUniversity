@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface CourseService<T extends Course> {
 
-	Iterable<T> findAll();
+	List<T> findAll();
 	T findById(Long id);
 	List<T> findByTitle(String title);
 	T save(T course);

@@ -1,6 +1,8 @@
 package com.turchanovskyi.virtual_university.ItegrationTests;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.turchanovskyi.virtual_university.VirtualUniversityApplication;
+import com.turchanovskyi.virtual_university.model.User;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -58,11 +60,52 @@ public class UserControllerIntegrationTest {
 
     @Test
     @WithMockUser
+    public void findUserById_thenStatus200() throws Exception {
+        this.mockMvc.perform(MockMvcRequestBuilders
+                .get("/user/4")
+                .accept(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.user_id").exists());
+    }
+
+    @Test
+    @WithMockUser
     public void getCourseBySurname_thenStatus200() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/course/search/qwer")
                 .contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_UTF8));
+    }
+
+    @Test
+    @WithMockUser(roles = "ADMIN")
+    public void whenPutUser_thenUpdateUser() throws Exception {
+
+        this.mockMvc.perform(MockMvcRequestBuilders
+                .put("/user/update")
+                .content(asJsonString(new User("qwer", "qwerqwer", "qwer", "Qwer", "qwer", "qwer@qwer.qwer", "qwer")))
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isCreated())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.login").value("qwer"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.password").value("qwerqwer"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.email").value("qwer@qwer.qwer"));
+    }
+
+    @Test
+    @WithMockUser(roles = "ADMIN")
+    public void whenDeleteUser_thenDeleteUser() throws Exception {
+        this.mockMvc.perform(MockMvcRequestBuilders.delete("/user/delete/{userId}", 1))
+                .andExpect(status().isNoContent());
+    }
+
+    public static String asJsonString(final Object obj) {
+        try {
+            return new ObjectMapper().writeValueAsString(obj);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }

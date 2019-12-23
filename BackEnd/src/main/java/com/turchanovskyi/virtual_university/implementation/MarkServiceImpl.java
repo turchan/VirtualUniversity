@@ -7,6 +7,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Repository
 @Transactional
 @Service("markService")
@@ -20,7 +22,7 @@ public class MarkServiceImpl implements MarkService {
 
 	@Transactional(readOnly = true)
 	@Override
-	public Iterable<Mark> findAll() {
+	public List<Mark> findAll() {
 		return markRepository.findAll();
 	}
 

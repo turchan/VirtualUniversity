@@ -27,7 +27,7 @@ public class CourseController {
 
 	@GetMapping
 	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_PROFESSOR') or hasRole('ROLE_ADMIN')")
-	public Iterable<Course> main()
+	public List<Course> main()
 	{
 		return courseService.findAll();
 	}

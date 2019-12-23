@@ -39,6 +39,11 @@ public class Material implements Serializable {
 		this.fileSet = fileSet;
 	}
 
+	public Material(@NotEmpty(message = "Title cannot be empty") String title, String description) {
+		this.title = title;
+		this.description = description;
+	}
+
 	public Long getMaterial_id() {
 		return material_id;
 	}

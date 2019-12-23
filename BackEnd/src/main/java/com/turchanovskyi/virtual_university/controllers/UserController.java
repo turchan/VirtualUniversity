@@ -23,7 +23,7 @@ public class UserController {
 	}
 
 	@GetMapping
-	public Iterable<User> main()
+	public List<User> main()
 	{
 		return userService.findAll();
 	}
@@ -37,17 +37,10 @@ public class UserController {
 	@GetMapping("/search/{surname}")
 	public List<User> searchUser(@PathVariable String surname)
 	{
-		List<User> userList = new ArrayList<>();
 
 		List<User> findUser = userService.findBySurname(surname);
-		Iterator<User> iter = findUser.iterator();
 
-		while (iter.hasNext())
-		{
-			userList.add(iter.next());
-		}
-
-		return userList;
+		return new ArrayList<>(findUser);
 
 		//return userService.findBySurname(surname);
 	}

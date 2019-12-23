@@ -22,7 +22,7 @@ public class CourseServiceImpl implements CourseService {
 
 	@Transactional(readOnly = true)
 	@Override
-	public Iterable<Course> findAll() {
+	public List<Course> findAll() {
 		return courseRepository.findAll();
 	}
 

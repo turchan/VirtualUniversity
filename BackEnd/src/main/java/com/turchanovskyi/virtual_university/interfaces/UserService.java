@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface UserService<T extends User> {
 
-	Iterable<T> findAll();
+	List<T> findAll();
 	T findById(Long id);
 	List<T> findBySurname(String surname);
 	T findByLogin(String login);

@@ -10,23 +10,25 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @CrossOrigin(origins = {"http://localhost:4200"})
 @RestController
 @RequestMapping("/marks")
 public class MarkController {
 
-	private final MarkService markService;
-	private final UserService userService;
-	private final CourseService courseService;
+	private final MarkService<Mark> markService;
+	private final UserService<User> userService;
+	private final CourseService<Course> courseService;
 
-	public MarkController(MarkService markService, UserService userService, CourseService courseService) {
+	public MarkController(MarkService<Mark> markService, UserService<User> userService, CourseService<Course> courseService) {
 		this.markService = markService;
 		this.userService = userService;
 		this.courseService = courseService;
 	}
 
 	@GetMapping
-	public Iterable<Mark> main()
+	public List<Mark> main()
 	{
 		return markService.findAll();
 	}

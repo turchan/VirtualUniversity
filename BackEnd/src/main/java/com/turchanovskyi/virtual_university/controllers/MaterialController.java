@@ -25,12 +25,12 @@ import java.util.stream.Collectors;
 @RequestMapping("/materials")
 public class MaterialController {
 
-	private final MaterialService materialService;
-	private final CourseService courseService;
+	private final MaterialService<Material> materialService;
+	private final CourseService<Course> courseService;
 	private final StorageService storageService;
 	private final FileRepository fileRepository;
 
-	public MaterialController(MaterialService materialService, CourseService<Course> courseService, StorageService storageService, FileRepository fileRepository) {
+	public MaterialController(MaterialService<Material> materialService, CourseService<Course> courseService, StorageService storageService, FileRepository fileRepository) {
 		this.materialService = materialService;
 		this.courseService = courseService;
 		this.storageService = storageService;
@@ -41,7 +41,7 @@ public class MaterialController {
 	private final Path rootLocation = Paths.get("upload-dir");
 
 	@GetMapping
-	public Iterable<Material> main()
+	public List<Material> main()
 	{
 		return materialService.findAll();
 	}
@@ -60,7 +60,7 @@ public class MaterialController {
 		try
 		{
 			material.setMaterial_id(null);
-			Course course = (Course) courseService.findById(courseId);
+			Course course = courseService.findById(courseId);
 			material.setCourse(course);
 			course.getMaterialList().add(material);
 
