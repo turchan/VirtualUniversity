@@ -1,8 +1,12 @@
 package com.turchanovskyi.virtual_university.ItegrationTests;
 
+<<<<<<< HEAD
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.turchanovskyi.virtual_university.VirtualUniversityApplication;
 import com.turchanovskyi.virtual_university.model.User;
+=======
+import com.turchanovskyi.virtual_university.VirtualUniversityApplication;
+>>>>>>> 856a85ce0f6dac87e443df0bcfc254b7a835ba5c
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -60,6 +64,7 @@ public class UserControllerIntegrationTest {
 
     @Test
     @WithMockUser
+<<<<<<< HEAD
     public void findUserById_thenStatus200() throws Exception {
         this.mockMvc.perform(MockMvcRequestBuilders
                 .get("/user/4")
@@ -71,6 +76,8 @@ public class UserControllerIntegrationTest {
 
     @Test
     @WithMockUser
+=======
+>>>>>>> 856a85ce0f6dac87e443df0bcfc254b7a835ba5c
     public void getCourseBySurname_thenStatus200() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/course/search/qwer")
                 .contentType(MediaType.APPLICATION_JSON_UTF8))
@@ -78,6 +85,7 @@ public class UserControllerIntegrationTest {
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_UTF8));
     }
+<<<<<<< HEAD
 
     @Test
     @WithMockUser(roles = "ADMIN")
@@ -108,4 +116,6 @@ public class UserControllerIntegrationTest {
             throw new RuntimeException(e);
         }
     }
+=======
+>>>>>>> 856a85ce0f6dac87e443df0bcfc254b7a835ba5c
 }

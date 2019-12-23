@@ -1,6 +1,9 @@
 package com.turchanovskyi.virtual_university.ItegrationTests;
 
+<<<<<<< HEAD
 import com.fasterxml.jackson.databind.ObjectMapper;
+=======
+>>>>>>> 856a85ce0f6dac87e443df0bcfc254b7a835ba5c
 import com.turchanovskyi.virtual_university.VirtualUniversityApplication;
 import com.turchanovskyi.virtual_university.controllers.CourseController;
 import com.turchanovskyi.virtual_university.interfaces.CourseService;
@@ -20,7 +23,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
+<<<<<<< HEAD
 import org.springframework.security.test.context.support.WithSecurityContext;
+=======
+>>>>>>> 856a85ce0f6dac87e443df0bcfc254b7a835ba5c
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -40,7 +46,10 @@ import static org.mockito.Mockito.verify;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+<<<<<<< HEAD
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+=======
+>>>>>>> 856a85ce0f6dac87e443df0bcfc254b7a835ba5c
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -62,6 +71,15 @@ public class CourseControllerIntegrationTest {
     @Autowired
     private MockMvc mockMvc;
 
+<<<<<<< HEAD
+=======
+    @MockBean
+    private CourseService courseService;
+
+    @MockBean
+    private CourseRepository courseRepository;
+
+>>>>>>> 856a85ce0f6dac87e443df0bcfc254b7a835ba5c
     @Before
     public void setUp() {
         mockMvc = MockMvcBuilders
@@ -80,6 +98,7 @@ public class CourseControllerIntegrationTest {
     }
 
     @Test
+<<<<<<< HEAD
     @WithMockUser(roles = "ADMIN")
     public void whenPostCourse_thenCreateCourse() throws Exception {
 
@@ -108,6 +127,11 @@ public class CourseControllerIntegrationTest {
     @WithMockUser
     public void getCourseByTitle_thenStatus200() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/course/search/asdfasdfasdf")
+=======
+    @WithMockUser
+    public void getCourseByTitle_thenStatus200() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/course/search/SUM")
+>>>>>>> 856a85ce0f6dac87e443df0bcfc254b7a835ba5c
                 .contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andDo(print())
                 .andExpect(status().isOk())
@@ -115,6 +139,7 @@ public class CourseControllerIntegrationTest {
     }
 
     @Test
+<<<<<<< HEAD
     @WithMockUser(roles = "ADMIN")
     public void whenPutCourse_thenUpdateCourse() throws Exception {
 
@@ -142,5 +167,17 @@ public class CourseControllerIntegrationTest {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+=======
+    @WithMockUser
+    public void whenPostCourse_thenCreateCourse() throws Exception {
+        Course course = new Course("zxcvzxcv", "zxcvzxcv", "Qwezxcvr", "Qwer", "zxcvzxcv");
+        given(courseService.save(course)).willReturn(course);
+
+        mockMvc.perform(post("/course/create").contentType(MediaType.APPLICATION_JSON).content(JsonUtil.toJson(course)))
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.title", is("zxcvzxcv")));
+        verify(courseService, VerificationModeFactory.times(1)).save(course);
+        reset(courseService);
+>>>>>>> 856a85ce0f6dac87e443df0bcfc254b7a835ba5c
     }
 }

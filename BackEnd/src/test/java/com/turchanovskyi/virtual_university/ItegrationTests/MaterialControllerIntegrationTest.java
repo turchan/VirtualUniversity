@@ -1,9 +1,13 @@
 package com.turchanovskyi.virtual_university.ItegrationTests;
 
+<<<<<<< HEAD
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.turchanovskyi.virtual_university.VirtualUniversityApplication;
 import com.turchanovskyi.virtual_university.model.Course;
 import com.turchanovskyi.virtual_university.model.Material;
+=======
+import com.turchanovskyi.virtual_university.VirtualUniversityApplication;
+>>>>>>> 856a85ce0f6dac87e443df0bcfc254b7a835ba5c
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,7 +26,10 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
+<<<<<<< HEAD
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+=======
+>>>>>>> 856a85ce0f6dac87e443df0bcfc254b7a835ba5c
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
@@ -58,6 +65,7 @@ public class MaterialControllerIntegrationTest {
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_UTF8));
     }
+<<<<<<< HEAD
 
     @Test
     @WithMockUser
@@ -84,4 +92,6 @@ public class MaterialControllerIntegrationTest {
             throw new RuntimeException(e);
         }
     }
+=======
+>>>>>>> 856a85ce0f6dac87e443df0bcfc254b7a835ba5c
 }
