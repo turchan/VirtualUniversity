@@ -1,14 +1,10 @@
 package com.turchanovskyi.virtual_university.UnitTests;
 
-import com.mysql.cj.xdevapi.Collection;
 import com.turchanovskyi.virtual_university.implementation.MarkServiceImpl;
-import com.turchanovskyi.virtual_university.implementation.MaterialServiceImpl;
 import com.turchanovskyi.virtual_university.model.Course;
 import com.turchanovskyi.virtual_university.model.Mark;
-import com.turchanovskyi.virtual_university.model.Material;
 import com.turchanovskyi.virtual_university.model.User;
 import com.turchanovskyi.virtual_university.repository.MarkRepository;
-import com.turchanovskyi.virtual_university.repository.MaterialRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;

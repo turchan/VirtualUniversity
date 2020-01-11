@@ -3,13 +3,11 @@ package com.turchanovskyi.virtual_university;
 import com.turchanovskyi.virtual_university.implementation.StorageService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import javax.annotation.Resource;
 
 @SpringBootApplication
-@EnableAutoConfiguration
 public class VirtualUniversityApplication implements CommandLineRunner {
 
 	@Resource
