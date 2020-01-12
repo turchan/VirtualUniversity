@@ -39,6 +39,10 @@ public class Mark implements Serializable {
 	public Mark() {
 	}
 
+	public Mark(Long mark_id) {
+		this.mark_id = mark_id;
+	}
+
 	public Mark(Long mark_id, String title, int mark, User user, Course course) {
 		this.mark_id = mark_id;
 		this.title = title;

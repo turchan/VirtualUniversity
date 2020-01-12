@@ -33,6 +33,10 @@ public class Material implements Serializable {
 	public Material() {
 	}
 
+	public Material(Long material_id) {
+		this.material_id = material_id;
+	}
+
 	public Material(String title, String description, Set<File> fileSet) {
 		this.title = title;
 		this.description = description;

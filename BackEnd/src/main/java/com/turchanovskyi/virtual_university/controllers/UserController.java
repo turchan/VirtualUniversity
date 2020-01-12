@@ -40,9 +40,9 @@ public class UserController {
 
 		List<User> findUser = userService.findBySurname(surname);
 
-		return new ArrayList<>(findUser);
+		//return new ArrayList<>(findUser);
 
-		//return userService.findBySurname(surname);
+		return userService.findBySurname(surname);
 	}
 
 	@ResponseStatus(HttpStatus.CREATED)

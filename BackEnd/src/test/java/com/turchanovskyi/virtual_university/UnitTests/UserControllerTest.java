@@ -47,8 +47,16 @@ public class UserControllerTest {
         verify(userRepository, times(1)).findAll();
     }
 
+    /*@Test
+    public void getUser() {
+        User user = new User("qwer", "qwer", "qwer", "qwer", "qwer", "qwer@qwer.qwer", "qwer");
+
+        when(userService.findById(user.getUser_id())).thenReturn(user);
+    }*/
+
     @Test
     public void searchUser() {
+
         when(userRepository.findByLogin("qwer")).thenReturn(new User("qwer", "qwer", "qwer", "qwer", "qwer", "qwer", "qwer"));
 
         User user = userService.findByLogin("qwer");

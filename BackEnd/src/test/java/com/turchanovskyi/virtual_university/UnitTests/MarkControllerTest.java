@@ -42,11 +42,24 @@ public class MarkControllerTest {
 
         when(markRepository.findAll()).thenReturn(markList);
 
-        List<Mark> materials = markService.findAll();
+        List<Mark> marks = markService.findAll();
 
-        assertThat(materials.size()).isEqualTo(3);
+        assertThat(marks.size()).isEqualTo(3);
         verify(markRepository, times(1)).findAll();
     }
+
+    /*@Test
+    public void getMark()
+    {
+        Mark mark = new Mark(1L);
+
+        when(markService.findById(mark.getMark_id())).thenReturn(mark);
+
+        Mark getMark = markService.findById(1L);
+
+        assertThat(getMark.getMark_id()).isEqualTo(1L);
+        verify(markService, times(1)).findById(1L);
+    }*/
 
     @Test
     public void addMark() {
