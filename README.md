@@ -6,6 +6,7 @@ Software for realization the process of working Universities. Application that h
 
   - Java 11
   - Spring boot
+  - MySQL
   - Spring Security(Role base Authorization using JWT Tokens)
   - TypeScript
   - JavaScript
